@@ -8,7 +8,7 @@ const Chat = require('../schemas/chat');
 const User = require('../schemas/user');
 const {Translate} = require('@google-cloud/translate');
 const projectId = 'propane-will-234405';
-const keyFilename = '/Users/audrey/Desktop/gong/speech/speechkey_origin.json';
+const keyFilename = '/home/gongbyeongmin/speechkey.json';
 
 // Creates a client
 
@@ -172,8 +172,8 @@ let translations = async function processtrans(target, text) {
 
   // Creates a client
   const translate = new Translate({
-    // projectId,
-    // keyFilename,
+    projectId,
+    keyFilename,
   });
   
   // const alltargets = allLangs.map(e => { return e.lang; });
