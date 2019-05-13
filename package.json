@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=production PORT=443 sudo pm2 start app.js -i -1"
+    "start": "NODE_ENV=production PORT=443 sudo pm2 start app.js -i -0"
   },
   "author": "Gong",
   "license": "MIT",
