@@ -29,20 +29,19 @@ router.get('/', async (req, res, next) => {
     console.error(error);
     next(error);
   }
-})
+});
 
 // 로그인 페이지에서 작성한 로그인 정보 전송
 router.post('/main', async (req, res, next) => {
   try {
-    if (req.body.userid == '') {
+    if (!req.body.userid) {
       req.flash('loginError', '아이디를 입력해주세요.');
       return res.redirect('/');
-    }
+    } else if (!req.body.lang){
+      req.flash('loginError', '언어를 입력해주세요.');
+      return res.redirect('/');
+    };
 
-
-    await User.deleteMany({
-      user: req.session.color
-    });
 
     const user = new User({
       user: req.session.color,
@@ -206,6 +205,9 @@ router.delete('/room/:id', async (req, res, next) => {
       _id: req.params.id
     });
     await Chat.deleteMany({
+      room: req.params.id
+    });
+    await User.deleteMany({
       room: req.params.id
     });
 

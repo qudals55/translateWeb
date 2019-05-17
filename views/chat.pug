@@ -1,4 +1,8 @@
-extends layout
+html
+  head
+    meta(charset='utf-8')
+    style
+      include chat.css
 
 block content
   h1= title
@@ -10,43 +14,47 @@ block content
   link(rel='sytlesheet', type='text/css', href='/css/room.css', media='screen')
   style
     #videosWrapper {vertical-aligin : middle;}
-  a#exit-btn(href='/') 방 나가기
-  fieldset(id='faceCall')
-        legend(id='face') 화상 통화
+  a#exit-btn(href='/') EXIT
+  
+  div(id='wapper')
+    section(id="faceCall")
+        p(class='TEXT') CAM
           div(class='container')
             div(id='videos')
               div(id='videosWrapper', style='{display: table; width: 100%;}')
                 div(id='localVideoWrap', class='videoWrap', style='{ display: table-cell; vertical-align: middle;}')
                   video(class='videoBox', id='localVideo', autoplay)
       
-    
-  fieldset
-    legend 채팅 내용
-    #chat-list
-      for chat in chats
-      
-        if chat.user === user
-          .mine(style='color:' + chat.user)
-            div= chat.id
-            if chat.gif
-              img(src='/gif/' + chat.gif)
+    aside
+        p.TEXT CHAT
+        #chat-list
+          for chat in chats
+            if chat.user === user
+              .mine(style='color:' + chat.user)
+                div= chat.id
+                if chat.gif
+                  img(src='/gif/' + chat.gif)
+                else
+                  div= chat.chat
+            else if chat.user === 'system'
+              .system
+                div= chat.chat
             else
-              div= chat.chat
-        else if chat.user === 'system'
-          .system
-            div= chat.chat
-        else
-          .other(style='color:' + chat.user)
-            div= chat.id
-            if chat.gif
-              img(src='/gif/' + chat.gif)
-            else
-              div= chat.chat
-  form#chat-form(action='/chat' method='post' enctype='multipart/form-data')
-    label(for='gif') GIF 올리기
-    input#gif(type='file' name='gif' accept='image/gif')
-    input#chat(name='chat')
-    button(type='submit') 전송
+              .other(style='color:' + chat.user)
+                div= chat.id
+                if chat.gif
+                  img(src='/gif/' + chat.gif)
+                else
+                  div= chat.chat
+
+
+    footer
+      form#chat-form(action='/chat' method='post' enctype='multipart/form-data')
+        label(for='gif') GIF Upload
+        input#gif(type='file' name='gif' accept='image/gif')
+        input#chat(name='chat')
+        button(type='submit') Submit
+        
   script(src='/socket.io/socket.io.js')
   script(src='/annyang.js')
   script.
@@ -170,6 +178,3 @@ block content
       xhr.open('POST', '/room/#{room._id}/gif');
       xhr.send(formData);
     });
-
-
-

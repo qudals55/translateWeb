@@ -17,12 +17,14 @@ html
           input#login.fadeIn.second(type='text', name='userid', placeholder='NickName')
           div
             select(name='lang', placeholder='language')
+              // 언어 추가
               option(value='', selected='selected') language
               option(type='radio', value='ko', checked='checked', name='lang') 한국어
               option(type='radio', value='en', name='lang') English
               option(type='radio', value='ja', name='lang') 日本
-          // <input type="submit" class="fadeIn fourth" value="Log In">
           br
           button#LoginButton(type='submit') login
+          if loginError
+              .error-message= loginError
         // Remind Passowrd
   body
