@@ -1,11 +1,7 @@
 'use strict';
 
 var meeting;
-<<<<<<< HEAD
-var host = '34.83.110.66'; // HOST_ADDRESS gets injected into room.ejs from the server side when it is rendered
-=======
-var host = '34.83.45.215 '; // HOST_ADDRESS gets injected into room.ejs from the server side when it is rendered
->>>>>>> 005908c9269bc058fab2a36457ba66298f89de0a
+var host = 'localhost'; // HOST_ADDRESS gets injected into room.ejs from the server side when it is rendered
 
 $( document ).ready(function() {
 	// console.log('address', host);
