@@ -19,50 +19,44 @@ block content
                 div(id='localVideoWrap', class='videoWrap', style='{ display: table-cell; vertical-align: middle;}')
                   video(class='videoBox', id='localVideo', autoplay)
       
+    
   fieldset
-        legend 채팅 내용
-        #chat-list
-          for chat in chats
-            if chat.lang != findlang
-              continue
-
-            else if chat.user === user
-              .mine(style='color:' + chat.user)
-                div= chat.id
-                if chat.gif
-                  img(src='/gif/' + chat.gif)
-                else
-                  div!=chat.chat
-
-            else if chat.user === 'system'
-              .system
-                div!=chat.chat
-
+    legend 채팅 내용
+    #chat-list
+      for chat in chats
+      
+        if chat.user === user
+          .mine(style='color:' + chat.user)
+            div= chat.id
+            if chat.gif
+              img(src='/gif/' + chat.gif)
             else
-              .other(style='color:' + chat.user)
-                div= chat.id
-                if chat.gif
-                  img(src='/gif/' + chat.gif)
-                else
-                  div!=chat.chat
-
-
-
+              div= chat.chat
+        else if chat.user === 'system'
+          .system
+            div= chat.chat
+        else
+          .other(style='color:' + chat.user)
+            div= chat.id
+            if chat.gif
+              img(src='/gif/' + chat.gif)
+            else
+              div= chat.chat
   form#chat-form(action='/chat' method='post' enctype='multipart/form-data')
     label(for='gif') GIF 올리기
     input#gif(type='file' name='gif' accept='image/gif')
     input#chat(name='chat')
     button(type='submit') 전송
+  script(src='/socket.io/socket.io.js')
   script(src='/annyang.js')
   script.
-    var socket = io.connect('https://localhost:443/chat', {
-      path: '/socket.io'
+     var socket = io.connect('https://localhost:443/chat', {
+     transports: [ 'websocket']
     });
-    
-    var user_lang = '#{ findlang }';
+    var user_lang = #{ findlang };
     //안양 모듈 실행 setlanguage로 사용자 언어로 변환
-      annyang.setLanguage(user_lang);
-      annyang.start({ autoRestart: false, continuous: true });
+      annyang.setLanguage(user_lang.lang);
+      annyang.start({ autoRestart: true, continuous: true });
       var recognition = annyang.getSpeechRecognizer();
       var final_transcript = '';
       recognition.interimResults = true;
@@ -76,7 +70,7 @@ block content
           //annyang.trigger(final_transcript); //If the sentence is "final" for the Web Speech API, we can try to trigger the sentence
           } else {
           interim_transcript += event.results[i][0].transcript;
-          //- console.log("interim_transcript="+interim_transcript);
+          console.log("interim_transcript="+interim_transcript);
         }
       }
       // 번역 결과를 서버에 전송
@@ -94,7 +88,7 @@ block content
         xhr.send(JSON.stringify({ chat: final_transcript }));
       }
     };
-    // 다른 사용자가 채팅방에 입장 한 경우
+    // 다른 사용자가 채팅방에 입장 한 경우 
     socket.on('join', function (data) {
       var div = document.createElement('div');
       div.classList.add('system');
@@ -114,8 +108,12 @@ block content
     });
     //채팅방에 채팅이 올라온 경우
     socket.on('chat', function (data) {
-      if(data.lang!=user_lang) return;
-      //- console.log('one : '+data.lang+'another : '+user_lang);
+
+      var needchat = data.chat.split('=');
+      var needindex = needchat.findIndex(function(e){
+        return e== user_lang.lang;
+      });
+      needchat = needchat[needindex+1];
       var div = document.createElement('div');
       //올라온 채팅이 내가 말한 내용이면 우측에 아니면 좌측에 게시
       if (data.user === '#{user}') {
@@ -126,12 +124,10 @@ block content
       var name = document.createElement('div');
       name.textContent = data.id;
       div.appendChild(name);
-      if (data.chat) {
+      if (needchat) {
         var chat = document.createElement('div');
-        chat.textContent = data.chat;
+        chat.textContent = needchat;
         div.appendChild(chat);
-
-        chat.innerHTML =data.chat;
       } else {
         var gif = document.createElement('img');
         gif.src = '/gif/' + data.gif;
@@ -142,7 +138,7 @@ block content
       document.querySelector('#chat-list').scrollTop = document.querySelector('#chat-list').scrollHeight;
     });
 
-
+    
     document.querySelector('#chat-form').addEventListener('submit', function (e) {
       e.preventDefault();
       if (e.target.chat.value) {
@@ -174,3 +170,6 @@ block content
       xhr.open('POST', '/room/#{room._id}/gif');
       xhr.send(formData);
     });
+
+
+

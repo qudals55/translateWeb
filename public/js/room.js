@@ -72,7 +72,7 @@ function adjustVideoSize() {
 	$('#videosWrapper').find("br").remove();
 	var numOfVideos = $(".videoWrap").length; 
 	if (numOfVideos>2) {
-		var $container = $("#videosWrapper");
+		var $container = $("#faceCall");
 		var newWidth;
 		for (var i=1; i<=numOfVideos; i++) {
 			newWidth = $container.width()/i;

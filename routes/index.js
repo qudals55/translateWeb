@@ -10,7 +10,7 @@ const {
   Translate
 } = require('@google-cloud/translate');
 const projectId = 'propane-will-234405';
-const keyFilename = '/home/gongbyeongmin/speechkey.json';
+const keyFilename = '/Users/audrey/Desktop/gong/speech/speechkey_origin.json';
 
 
 
@@ -38,6 +38,11 @@ router.post('/main', async (req, res, next) => {
       req.flash('loginError', '아이디를 입력해주세요.');
       return res.redirect('/');
     }
+
+
+    await User.deleteMany({
+      user: req.session.color
+    });
 
     const user = new User({
       user: req.session.color,
@@ -167,7 +172,7 @@ router.get('/room/:id', async (req, res, next) => {
       } else{
         getChat = needchat[needindex+1];
       };
-      
+
       const chat = ({
         room: req.params.id,
         user: originchat.user,
@@ -201,10 +206,6 @@ router.delete('/room/:id', async (req, res, next) => {
       _id: req.params.id
     });
     await Chat.deleteMany({
-      room: req.params.id
-    });
-
-    await User.deleteMany({
       room: req.params.id
     });
 

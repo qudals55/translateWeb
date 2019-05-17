@@ -80,7 +80,7 @@ module.exports = (server, app, sessionMiddleware) => {
           console.log(err);
         } else{
         if (clients.length === 0) {
-          axios.delete(`https://34.83.110.66:443/room/${roomId}`)
+          axios.delete(`https://localhost:443/room/${roomId}`)
             .then(() => {
               console.log('방 제거 성공');
             })
