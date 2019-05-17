@@ -10,7 +10,7 @@ const {
   Translate
 } = require('@google-cloud/translate');
 const projectId = 'propane-will-234405';
-const keyFilename = '/Users/audrey/Desktop/gong/speech/speechkey_origin.json';
+const keyFilename = '/home/gongbyeongmin/speechkey.json';
 
 
 

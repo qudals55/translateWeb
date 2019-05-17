@@ -1,17 +1,28 @@
-extends layout
-
-block content
-  fieldset
-    legend 로그인
-    form(action='/main' method='post')
-      label 아이디 : 
-      div: input(name='userid', type='text')
-      legend 언어
-      label 한국어
-      input(type='radio', value="ko", checked="checked", name='lang') 
-      label 일본어
-      input(type='radio', value="ja", name='lang') 
-      label 영어
-      input(type='radio', value="en", name='lang') 
-      div: button(type='submit') 로그인
-  
+html
+  head
+    meta(charset='utf-8')
+    style
+      include login2.css
+  section#Wrapper(style='margin-left: auto; margin-right: auto;')
+    .wrapper.fadeInDown
+      h1 LTE
+      h3 Language Translate Easily
+      p real-time translate video-call service
+      #formContent
+        // Tabs Titles
+        h2.active  JOIN 
+        // Icon
+        // Login Form
+        form(action='/main', method='post')
+          input#login.fadeIn.second(type='text', name='userid', placeholder='NickName')
+          div
+            select(name='lang', placeholder='language')
+              option(value='', selected='selected') language
+              option(type='radio', value='ko', checked='checked', name='lang') 한국어
+              option(type='radio', value='en', name='lang') English
+              option(type='radio', value='ja', name='lang') 日本
+          // <input type="submit" class="fadeIn fourth" value="Log In">
+          br
+          button#LoginButton(type='submit') login
+        // Remind Passowrd
+  body

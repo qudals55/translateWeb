@@ -1,0 +1,30 @@
+body{
+    width: 100%;
+    height: 100%;
+    background-image:url(https://twimg0-a.akamaihd.net/a/1350072692/t1/img/front_page/jp-mountain@2x.jpg);
+    /* background-image:url("../public/css/images/imageMain.jpg"); */
+    /* background-image: 'url(' + require('../public/css/images/imageMain.jpg') + ')'; */
+    background-size: cover;
+    background-attachment:fixed;
+    margin: 0;
+    padding: 0;
+    /* opacity: 0.4; */
+}
+
+#Wrapper {
+    width: 40%;
+    position   : relative;
+    top        : 0px;
+    padding    : 1px;
+    background :  #BD8E62;
+}
+  
+button{
+    background    : white;
+    color         : palevioletred;
+    font-size     : 20px;
+    margin        : 2px;
+    padding       : 0.25px 1px;
+     /* border       : 5px solid palevioletred; */
+    border-radius : 4px;
+}

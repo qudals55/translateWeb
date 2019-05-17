@@ -1,9 +1,10 @@
 'use strict';
 
 var meeting;
-var host = '34.83.45.215'; // HOST_ADDRESS gets injected into room.ejs from the server side when it is rendered
+var host = '34.83.110.66'; // HOST_ADDRESS gets injected into room.ejs from the server side when it is rendered
 
 $( document ).ready(function() {
+	// console.log('address', host);
 	/////////////////////////////////
 	// CREATE MEETING
 	/////////////////////////////////
@@ -53,7 +54,7 @@ $( window ).resize(function() {
 });
 
 function addRemoteVideo(stream, participantID) {
-	// $("#"+participantID).remove();
+   $("#"+participantID).remove();
     var $videoBox = $("<div class='videoWrap' id='"+participantID+"'></div>");
     var $video = $("<video class='videoBox' autoplay></video>");
 	$video.prop("srcObject", stream);
@@ -70,6 +71,7 @@ function removeRemoteVideo(participantID) {
 }
 
 function adjustVideoSize() {
+	$('#videosWrapper').find("br").remove();
 	var numOfVideos = $(".videoWrap").length; 
 	if (numOfVideos>0) {
 		var $container = $("#faceCall");

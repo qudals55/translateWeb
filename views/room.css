@@ -1,0 +1,24 @@
+body{
+    width: 100%;
+    height: 100%;
+    background-image:url(https://twimg0-a.akamaihd.net/a/1350072692/t1/img/front_page/jp-mountain@2x.jpg);
+    background-size: cover;
+    background-attachment:fixed;
+    margin: 0;
+    padding: 0;
+}
+
+input{
+    font-size: 15px;
+}
+
+button{
+    /* size      : relative; */
+    background    : white;
+    color         : black;  /*글자색*/
+    font-size     : 15px;
+    margin        : 2px;
+    width         : 150px;
+    padding       : 0.25px 1px;
+    border-radius : 4px;
+}

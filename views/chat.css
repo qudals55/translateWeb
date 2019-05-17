@@ -1,0 +1,167 @@
+body {
+    /*
+    text-align: center;
+    */
+    background :  #56baed;
+    min-width  : 1400px;
+    min-height : 700px
+}
+
+p {
+    text-align: center;
+}
+
+h1{
+    /* position: absolute;  */
+    text-align: left;
+}
+#Wrapper {
+    position   : relative;
+    top        : 0px;
+    padding    : 1px;
+    background :  papayawhip;
+}
+  /*
+   button{
+       background : white;
+       color      : palevioletred;
+  
+       font-size     : 5px;
+       margin        : 2px;
+       padding       : 0.25px 1px;
+       border        : 5px solid palevioletred;
+       border-radius : 4px;
+   }
+  */
+#LoginButton{
+    background : white;
+    color      : palevioletred;
+    font-size     : 15px;
+    margin        : 2px;
+    padding       : 0.25px 1px;
+    border        : 5px solid white;
+    border-radius : 4px;
+    font-weight : bolder;
+    width : 50px;
+    height : 35px;
+}
+
+#Input{
+    padding       : 0.5px;
+    margin        : 0.5px;
+    color         :palevioletred;
+    /* text-weight   : bold; */
+    background    : white;
+    border        : 2px solid palevioletred;
+    border-radius : 3px;
+}
+
+
+.TEXT{
+        color : black;
+        font-weight: bold;
+}
+
+#exit-btn { position: absolute; top: 20px; right: 20px; text-decoration:none; color : black;
+font-weight: bold; }
+
+#chat-list { height: 500px; overflow: auto; padding: 5px; }
+#chat-form { text-align: right;}
+
+* { box-sizing: border-box; }
+.mine { text-align: right; }
+.system { text-align: center; }
+.mine img, .other img {
+    max-width: 300px;
+    display: inline-block;
+    border: 1px solid silver;
+    border-radius: 5px;
+    padding: 2px 5px;
+}
+.mine div:first-child, .other div:first-child { font-size: 12px; }
+.mine div:last-child, .other div:last-child {
+    display: inline-block;
+    border: 1px solid silver;
+    border-radius: 5px;
+    padding: 2px 5px;
+    max-width: 300px;
+}
+
+
+#chat-form { text-align: right; }
+label[for='gif'], #chat, #chat-form [type='submit'] {
+    display: inline-block;
+    height: 30px;
+    /* vertical-align: top; */
+}
+label[for='gif'] { cursor: pointer; padding: 5px; }
+#gif { display: none; }
+
+/* table, table th, table td {
+    text-align: center;
+    border: 1px solid silver;
+    border-collapse: collapse;
+} */
+
+
+body {
+    text-align: center;
+    color: #FFF;
+}
+div#wapper {
+    width: 100%;
+    text-align: left;
+    min-height: 300px;
+    margin: 0 auto;
+}
+header, footer, nav, aside, section {
+    border: 1px solid #999;
+    margin: 5px;
+    padding: 10px;
+}
+header {
+    height: 50px;
+    background-color: red;
+}
+nav, section, aside {
+    float: left;
+    height: 200px;
+}
+nav {
+    background-color: goldenrod;
+    width: 100px;
+}
+/* section {
+    background-color: white;
+    width: 1050px;
+    height: 600px;
+}
+aside {
+    background-color: white;
+    width: 500px;
+    height: 600px;
+} */
+section {
+    background-color: white;
+    width: 63%;
+    height: 100%;
+    /* margin-right : -300px;
+	padding-right : 300px;
+	box-sizing : border-box; */
+}
+aside {
+    background-color: white;
+    width: 35%;
+    height: 100%;
+}
+footer {
+    height: 50px;
+    background-color: blue;
+    position: relatiev;
+    clear: both;
+}
+article {
+    width: 90%;
+    margin: 20px;
+    background-color: #999;
+}
