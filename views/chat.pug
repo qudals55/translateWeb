@@ -1,3 +1,5 @@
+
+
 extends layout
 
 block content
@@ -8,14 +10,16 @@ block content
   script(src='/js/meeting.js')
   script(src='/js/room.js')
   link(rel='sytlesheet', type='text/css', href='/css/room.css', media='screen')
+  style
+    #videosWrapper {vertical-aligin : middle;}
   a#exit-btn(href='/') 방 나가기
   fieldset
-    legend 화상채팅 구역
-        div(class='container')
-          div(id='videos')
-            div(id='videosWrapper')
-              div(id='localVideoWrap', class='videoWrap')
-                video(class='videoBox', id='localVideo', autoplay)    
+        legend(id='face') 화상 통화
+          div(class='container')
+            div(id='videos')
+              div(id='videosWrapper', style='{display: table; width: 100%;}')
+                div(id='localVideoWrap', class='videoWrap', style='{ display: table-cell; vertical-align: middle;}')
+                  video(class='videoBox', id='localVideo', autoplay)
   fieldset
     legend 채팅 내용
     #chat-list

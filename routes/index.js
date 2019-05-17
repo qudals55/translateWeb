@@ -39,11 +39,6 @@ router.post('/main', async (req, res, next) => {
       return res.redirect('/');
     }
 
-
-    await User.deleteMany({
-      user: req.session.color
-    });
-
     const user = new User({
       user: req.session.color,
       id: req.body.userid,
@@ -206,6 +201,10 @@ router.delete('/room/:id', async (req, res, next) => {
       _id: req.params.id
     });
     await Chat.deleteMany({
+      room: req.params.id
+    });
+
+    await User.deleteMany({
       room: req.params.id
     });
 
