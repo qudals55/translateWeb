@@ -1,9 +1,10 @@
 'use strict';
 
 var meeting;
-var host = '34.83.45.215'; // HOST_ADDRESS gets injected into room.ejs from the server side when it is rendered
+var host = '34.83.45.215 '; // HOST_ADDRESS gets injected into room.ejs from the server side when it is rendered
 
 $( document ).ready(function() {
+	// console.log('address', host);
 	/////////////////////////////////
 	// CREATE MEETING
 	/////////////////////////////////
@@ -22,6 +23,7 @@ $( document ).ready(function() {
     		});
 
 			$("#localVideo").prop('muted', true);
+			$("#localVideo").prop('height', 400);
 
 	    }
 	);
@@ -48,15 +50,12 @@ $( document ).ready(function() {
 
 }); // end of document.ready
 
-$( window ).resize(function() {
-	adjustVideoSize();
-});
-
 function addRemoteVideo(stream, participantID) {
 	// $("#"+participantID).remove();
     var $videoBox = $("<div class='videoWrap' id='"+participantID+"'></div>");
     var $video = $("<video class='videoBox' autoplay></video>");
 	$video.prop("srcObject", stream);
+	$video.prop('height', 400);
 
     $videoBox.append($video);
 	$("#videosWrapper").append($videoBox);
@@ -70,26 +69,38 @@ function removeRemoteVideo(participantID) {
 }
 
 function adjustVideoSize() {
+	$('#videosWrapper').find("br").remove();
 	var numOfVideos = $(".videoWrap").length; 
-	if (numOfVideos>0) {
-		var $container = $("#faceCall");
-		var numOfColumns=numOfVideos;
-		if(numOfColumns>2) numOfColumns=2;
-		var newWidth, newHeight;
-		newWidth = $container.width()/numOfColumns;
-		
-		// check if we can start a new row
-		var scale = newWidth/$(".videoWrap").width();
-		newHeight = $(".videoWrap").height()*scale;
+	if (numOfVideos>2) {
+		var $container = $("#videosWrapper");
+		var newWidth;
+		for (var i=1; i<=numOfVideos; i++) {
+			newWidth = $container.width()/i;
+			
+			// check if we can start a new row
+			var scale = newWidth/$(".videoWrap").width();
+			var newHeight = $(".videoWrap").height()*scale;
+			var columns = Math.ceil($container.width()/newWidth);
+			var rows = numOfVideos/columns;
+			
+			if ((newHeight*rows) <= $container.height()) {
+				break;
+			}
+		}
 		
 		var percent = (newWidth/$container.width())*100;
 		$(".videoWrap").css("width", percent-5+"%");
 		$(".videoWrap").css("height", "auto"); 
-		$(".videoWrap").css("display", "table-cell");
-		$(".videoWrap").css("vertical-align", "middle"); 
-		
-		$(".videoBox").prop("width", newWidth*0.9);
 
+		
+		//var numOfColumns = Math.ceil(Math.sqrt(numOfVideos));
+		var numOfColumns;
+		for (var i=2; i<=numOfVideos; i++) {
+			if (numOfVideos % i === 0) {
+				numOfColumns = i;
+				break;
+			}
+		}
 	    $('#videosWrapper').find("br").remove();
 		$('.videoWrap:nth-child('+numOfColumns+'n)').after("<br>");
 	} else if (numOfVideos == 2) {
@@ -98,7 +109,6 @@ function adjustVideoSize() {
 		$('#videosWrapper').find("br").remove();
 	} else {
 		$("#localVideoWrap").width('auto');
-		$("#localVideo").prop('width', 500);
 		$('#videosWrapper').find("br").remove();
 	}
 }
