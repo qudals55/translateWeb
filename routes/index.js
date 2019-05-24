@@ -25,6 +25,7 @@ router.get('/', async (req, res, next) => {
       title: '로그인',
       error: req.flash('loginError')
     });
+    
   } catch (error) {
     console.error(error);
     next(error);
@@ -199,17 +200,65 @@ router.get('/room/:id', async (req, res, next) => {
   }
 });
 
+router.get('/download/:id', async (req, res, next) =>{
+
+  const user = await User.findOne({
+    user: req.session.color,
+  });
+
+  const chats = await Chat.find({
+    room: req.params.id,
+  }).sort('createdAt');
+
+  let getDb = '';
+  for (originchat of chats) {
+
+    var needchat = originchat.chat.split('=');
+    var needindex = needchat.findIndex(function(e){
+    return e== user.lang;
+    });
+
+    if(needindex == -1) {
+    needindex++;
+    const translate = new Translate({
+      projectId,
+      keyFilename,
+    });
+    let [translations] = await translate.translate(needchat[needindex+1],user.lang);
+    translations = Array.isArray(translations) ? translations : [translations];
+    getChat = translations;
+    } else{
+      getChat = needchat[needindex+1];
+    };
+
+    getDb += originchat.id + ': ' + getChat + '\n' + '\n';
+  };
+  try{
+    res.setHeader('Content-type', 'text/plain');
+    res.setHeader('Content-disposition', 'attachment; filename=record.txt');
+    res.send(getDb);
+  }catch (error){
+    console.error(error);
+    next(error);
+  };
+});
+
+
+
 router.delete('/room/:id', async (req, res, next) => {
   try {
-    await Room.deleteOne({
-      _id: req.params.id
-    });
+
     await Chat.deleteMany({
       room: req.params.id
     });
     await User.deleteMany({
       room: req.params.id
     });
+
+    await Room.deleteOne({
+      _id: req.params.id
+    });
+  
 
     res.send('ok');
     setTimeout(() => {

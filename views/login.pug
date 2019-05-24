@@ -1,3 +1,5 @@
+
+
 html
   head
     meta(charset='utf-8')
@@ -23,8 +25,9 @@ html
               option(type='radio', value='en', name='lang') English
               option(type='radio', value='ja', name='lang') 日本
           br
-          button#LoginButton(type='submit') login
           if loginError
-              .error-message= loginError
+             .error-message= loginError
+          button#LoginButton(type='submit') login
+
         // Remind Passowrd
   body

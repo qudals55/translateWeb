@@ -54,6 +54,8 @@ block content
         input#gif(type='file' name='gif' accept='image/gif')
         input#chat(name='chat')
         button(type='submit') Submit
+      form#record-form(action='/download' method='get')  
+        button(type='submit') DownLoad Chats 
         
   script(src='/socket.io/socket.io.js')
   script(src='/annyang.js')
@@ -61,9 +63,9 @@ block content
      var socket = io.connect('https://localhost:443/chat', {
      transports: [ 'websocket']
     });
-    var user_lang = #{ findlang };
+    var userCheck = #{ findlang };
     //안양 모듈 실행 setlanguage로 사용자 언어로 변환
-      annyang.setLanguage(user_lang.lang);
+      annyang.setLanguage(userCheck.lang);
       annyang.start({ autoRestart: true, continuous: true });
       var recognition = annyang.getSpeechRecognizer();
       var final_transcript = '';
@@ -119,7 +121,7 @@ block content
 
       var needchat = data.chat.split('=');
       var needindex = needchat.findIndex(function(e){
-        return e== user_lang.lang;
+        return e== userCheck.lang;
       });
       needchat = needchat[needindex+1];
       var div = document.createElement('div');
@@ -163,6 +165,34 @@ block content
         xhr.send(JSON.stringify({ chat: this.chat.value }));
       }
     });
+
+
+    document.querySelector('#record-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var xhr = new XMLHttpRequest();
+      xhr.responseType = 'blob';
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          var blob = this.response;
+          var contentDispo = this.getResponseHeader('Content-Disposition');
+          var fileName = 'record.txt';
+          saveBlob(blob, fileName);
+        } else {
+          console.error(xhr.responseText);
+          }
+        };
+  
+        xhr.open('GET', '/download/#{room._id}');
+        xhr.send();
+    });
+
+    function saveBlob(blob, fileName) {
+    var a = document.createElement('a');
+    a.href = window.URL.createObjectURL(blob);
+    a.download = fileName;
+    a.dispatchEvent(new MouseEvent('click'));
+    };
+
     document.querySelector('#gif').addEventListener('change', function (e) {
       var formData = new FormData();
       var xhr = new XMLHttpRequest();

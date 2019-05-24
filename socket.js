@@ -73,14 +73,13 @@ module.exports = (server, app, sessionMiddleware) => {
     socket.on('disconnect', async () => {
 
       console.log('접속 해제');
-      
       await chat.adapter.clients([roomId], (err, clients) => {
         console.log('Now room count: ', clients.length);
         if(err){
           console.log(err);
         } else{
         if (clients.length === 0) {
-          axios.delete(`https://34.83.45.215:443/room/${roomId}`)
+          axios.delete(`https://localhost:443/room/${roomId}`)
             .then(() => {
               console.log('방 제거 성공');
             })

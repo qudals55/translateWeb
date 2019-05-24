@@ -35,7 +35,7 @@ block content
 .error-message= error
 script(src='/socket.io/socket.io.js')
 script.
-  var socket = io.connect('https://34.83.45.215:443/room', {
+  var socket = io.connect('https://localhost:443/room', {
     transports: [ 'websocket']
   });
   socket.on('newRoom', function (data) {
