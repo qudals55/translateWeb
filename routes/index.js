@@ -10,7 +10,7 @@ const {
   Translate
 } = require('@google-cloud/translate');
 const projectId = 'propane-will-234405';
-const keyFilename = '/Users/audrey/Desktop/gong/speech/speechkey_origin.json';
+const keyFilename = '/home/gongbyeongmin/speechkey.json';
 
 
 
@@ -62,9 +62,19 @@ router.post('/main', async (req, res, next) => {
 // 메인 페이지 접속
 router.get('/main', async (req, res, next) => {
   try {
+    let getRooms = [];
     const rooms = await Room.find({});
+    for (room of rooms){ 
+      getRooms.push(room);
+      const users = await User.find({
+        room: room._id
+      }).sort('createdAt');
+      getRooms.push(users);
+      getRooms.push(users.length);
+    };
+
     res.render('main', {
-      rooms,
+      rooms: getRooms,
       title: 'GIF 채팅방',
       error: req.flash('roomError')
     });

@@ -1,30 +1,765 @@
-body{
-    width: 100%;
-    height: 100%;
-    background-image:url(https://twimg0-a.akamaihd.net/a/1350072692/t1/img/front_page/jp-mountain@2x.jpg);
-    /* background-image:url("../public/css/images/imageMain.jpg"); */
-    /* background-image: 'url(' + require('../public/css/images/imageMain.jpg') + ')'; */
-    background-size: cover;
-    background-attachment:fixed;
-    margin: 0;
-    padding: 0;
-    /* opacity: 0.4; */
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display|Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato:100');
+
+/* BASIC */
+
+body {
+  background-color: e5dee2;
+  /* background-image:url('/main3.jpg') ; */
+  font-family: 'Poppins', sans-serif;
+  background-size: cover;
+  /* height: 100vh; */
+  max-height: 100%;
+  max-width: 100%;
+  margin-top:0px;
+  margin-bottom:0px;
+  margin-left:0px;
+  margin-right:0px;
+  overflow:hidden;
+}
+a {
+  font-family: 'Playfair Display', serif;
+  color: black;
+  display:inline-block;
+  text-decoration: none;
+  font-weight: 400;
+}
+h1 {
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  font-weight: bolder;
+  font-size:56px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  color: black; 
+}
+h2 {
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  font-weight: bolder;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display:inline-block;
+  margin: 40px 8px 10px 8px;
+  color: #cccccc;
+}
+h3 {
+  text-align: left;
+  font-size: 30px;
+  font-weight: 600;
+  /* text-transform: uppercase; */
+  display:inline-block;
+  margin: 1px 8px 10px 8px;
+  color: black;
 }
 
-#Wrapper {
-    width: 40%;
-    position   : relative;
-    top        : 0px;
-    padding    : 1px;
-    background :  #BD8E62;
+/* STRUCTURE */
+div#wapper {
+  position: absolute;
+  width: 100%;
+  text-align: left;
+  height: auto;
+  margin: 0 auto;
 }
+.hidden {
+  display:none;
+  visibility:hidden;
+}
+
+h4{
+  font-family: 'Playfair Display', serif;
+  margin-bottom: -2px;
+  text-align:left;
+  font-size:20px;
+  color:black;
+}
+h5{
+  font-size: 40px;
+  color: black;
+  font-family: 'Lato', sans-serif;
+  text-align:center;
+  margin-top: 0px;
+  margin-bottom:0px;
+}
+label{
+  text-align:left;
+  font-size: 20px;
+  color:black;
+}
+label:hover{
+  font-size:22px;
+  color: gray;
+}
+aside, section {
+  /* border: 1px solid #999; */
+  margin: 5px;
+  padding: 10px;
+  float: left;
+  height:200px;
+}
+aside{
+  display: inline-block;
+  position: absolute;
+  /* background-color: white; */
+  width: 40%;
+  /* height: 1000px; */
+}
+
+section{
+  /* background-color: white; */
+    margin-top:80px;
+    width: 60%;
+    /* height: 1000px; */
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
+}
+.wrapper2{
+  margin-top: 100px;
+  display: flex;
+  background-color: rgba( 255, 255, 255, 0.2 );
+  flex-direction: column;
+  width: 320px;
+  min-height: 100%;
+  padding: 20px;
+  /* visibility: collapse; */
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  border-radius: 10px 10px 10px 10px;
+}
+
+/* 버튼으로 사용할 라벨 디자인 */
+.button {
+  font-size:19px;
+  font-weight:600;
+  vertical-align:middle;
+  cursor:pointer;
+}
+
+/* How to login 디자인 */
+.box_modal1 {
+  position:fixed;
+  display:block;
+  width:300px;
+  height:150px;
+  top:50%;
+  left:50%;
+  margin-top:-75px;
+  margin-left:-150px;
+  background:#d9e5e9;
+  border:1px solid #386980;
+  overflow:hidden;
+  /* 아래 부분은 애니메이션 효과를 위한 부분 */
+  visibility: collapse;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  transform: scale(0, 0);
+}
+
+/* how to login 디자인 */
+.box_modal2 {
+  position:fixed;
+  display:block;
+  width:321px;
+  height:325px;
+  top:50%;
+  left:50%;
+  margin-top:-200px;
+  margin-left:-150px;
+  background-image:url('/loginPart/login.png');
+  background-repeat: no-repeat;
+  /* background:#d9e5e9; */
+  border:1px solid #386980;
+  overflow:hidden;
+  /* 아래 부분은 애니메이션 효과를 위한 부분 */
+  visibility: collapse;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  transform: scale(0, 0);
+}
+/* how to enter room 디자인 */
+.box_modal5 {
+  position:fixed;
+  display:block;
+  width:859px;
+  height:329px;
+  top:50%;
+  left:50%;
+  margin-top:-200px;
+  margin-left:-400px;
+  background-image:url('/loginPart/enterroom.png');
+  background-repeat: no-repeat;
+  /* background:#d9e5e9; */
+  border:1px solid #386980;
+  overflow:hidden;
+  /* 아래 부분은 애니메이션 효과를 위한 부분 */
+  visibility: collapse;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  transform: scale(0, 0);
+}
+/* how to make room 디자인 */
+.box_modal2_2 {
+  position:fixed;
+  display:block;
+  width:321px;
+  height:325px;
+  top:50%;
+  left:50%;
+  margin-top:-200px;
+  margin-left:-150px;
+  background-image:url('/로그인화면.PNG');
+  background-repeat: no-repeat;
+  /* background:#d9e5e9; */
+  border:1px solid #386980;
+  overflow:hidden;
+  /* 아래 부분은 애니메이션 효과를 위한 부분 */
+  visibility: collapse;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  transform: scale(0, 0);
+}
+
+/* how to chat 디자인 */
+.box_modal4 {
+  position:fixed;
+  display:block;
+  width:506px;
+  height:560px;
+  top:50%;
+  left:50%;
+  margin-top:-300px;
+  margin-left:-300px;
+  background-image:url('/loginPart/chat.png');
+  background-repeat: no-repeat;
+  border:1px solid #386980;
+  overflow:hidden;
+  /* 아래 부분은 애니메이션 효과를 위한 부분 */
+  visibility: collapse;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  transform: scale(0, 0);
+}
+
+/* advantage 디자인 */
+.box_modal3 {
+  position:fixed;
+  display:block;
+  width:1000px;
+  height:325px;
+  top:50%;
+  left:50%;
+  margin-top:-200px;
+  margin-left:-500px;
+  background-color: #d9e5e9; 
+  border:1px solid #386980;
+  overflow:hidden;
+  /* 아래 부분은 애니메이션 효과를 위한 부분 */
+  visibility: collapse;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  transform: scale(0, 0);
+}
+
+.box_modal1:hover {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+
+.box_modal2:hover {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.box_modal4:hover {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.box_modal3:hover {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.box_modal5:hover {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+/* 닫기 버튼으로 사용할 라벨 */
+.closer {
+  position:absolute;
+  width:30px;
+  height:30px;
+  top:0;
+  right:0;
+  background:#eee;
+  border-left:1px solid #386980;
+  border-bottom:1px solid #386980;
+  text-align:center;
+  line-height:26px;
+  font-size:16x;
+  cursor:pointer;
+}
+.text {
+  display:inline-block;
+  padding:20px;
+}
+.text h3 {
+  font-size:19px;
+  margin:0;
+}
+.text p {
+  font-size:13px;
+}
+/* 윈도우가 팝업되는 코어 소스 */
+input#modal1[type=checkbox]:checked ~ .box_modal1 {
+  visibility: visible;
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+input#modal2[type=checkbox]:checked ~ .box_modal2 {
+  visibility: visible;
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+input#modal4[type=checkbox]:checked ~ .box_modal4 {
+  visibility: visible;
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+input#modal3[type=checkbox]:checked ~ .box_modal3 {
+  visibility: visible;
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+input#modal5[type=checkbox]:checked ~ .box_modal5 {
+  visibility: visible;
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+#formContent {
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  background: #fff;
+  padding: 30px;
+  width: 90%;
+  max-width: 450px;
+  position: relative;
+  padding: 0px;
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+#formFooter {
+  background-color: #f6f6f6;
+  border-top: 1px solid #dce8f1;
+  padding: 25px;
+  text-align: center;
+  -webkit-border-radius: 0 0 10px 10px;
+  border-radius: 0 0 10px 10px;
+}
+
+
+
+/* TABS */
+
+h2.inactive {
+  color: #cccccc;
+}
+
+h2.active {
+  color: #0d0d0d;
+  /* border-bottom: 2px solid #5fbae9; */
+  text-align: center;
+
+}
+
+h3.notice{
+  /* font-size: 30px; */
+  /* color: black; */
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+}
+h4.language{
+  /* color: black; */
+  font-size: 10px;
+}
+#myVideo{
+  position:absolute;
+  top: 0px;
+  left: 0px;
+  min-width: 100%;
+  min-height: 300%;
+  width: auto;
+  height: auto;
+  z-index: -1000;
+  overflow: hidden;
+  opacity: 0.5;
+  /* position: absolute;
+  opacity: 0.5;
+  z-index: -1;
+  width: 1600px;
+  height:auto;
+  overflow: hidden; */
+
+}
+
+/* FORM TYPOGRAPHY*/
+button[type=submit]{
+  background-color: #ece6c4;
+  border: none;
+  color: white;
+  padding: 15px 80px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 13px;
+  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  margin: 5px 20px 20px 20px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+input[type=button], input[type=submit]  {
+  background-color: #56baed;
+  border: none;
+  color: white;
+  padding: 15px 80px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 13px;
+  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  margin: 5px 20px 40px 20px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+  background-color: #39ace7;
+}
+
+input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
+  -moz-transform: scale(0.95);
+  -webkit-transform: scale(0.95);
+  -o-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+input[type=text] {
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: 85%;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+select[name=lang]:placeholder {
+  color: #edead7;
+}
+select[name=list]:placeholder {
+  color: #edead7;
+}
+option[value='']{
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  font-weight: bolder;
   
-button{
-    background    : white;
-    color         : palevioletred;
-    font-size     : 20px;
-    margin        : 2px;
-    padding       : 0.25px 1px;
-     /* border       : 5px solid palevioletred; */
-    border-radius : 4px;
 }
+select[name=lang]{
+  background-color: #f6f6f6;
+  font-family: 'Lato', sans-serif;
+  font-weight: bolder;
+  
+  /* border: none; */
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: 85%;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+select[name=list]{
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: 85%;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+input[type=text]:focus {
+  background-color: #fff;
+  border-bottom: 2px solid #5fbae9;
+}
+
+input[type=text]:placeholder {
+  color: #cccccc;
+  font-family: 'Lato', sans-serif;
+  font-weight: bolder;
+  
+}
+
+
+
+/* ANIMATIONS */
+
+/* Simple CSS3 Fade-in-down Animation */
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+/* Simple CSS3 Fade-in Animation */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes    fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes         fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.fadeIn {
+  opacity:0;
+  -webkit-animation:fadeIn ease-in 1;
+  -moz-animation:fadeIn ease-in 1;
+  animation:fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode:forwards;
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+
+  -webkit-animation-duration:1s;
+  -moz-animation-duration:1s;
+  animation-duration:1s;
+}
+
+.fadeIn.first {
+  -webkit-animation-delay: 0.4s;
+  -moz-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+.fadeIn.second {
+  -webkit-animation-delay: 0.6s;
+  -moz-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+
+.fadeIn.third {
+  -webkit-animation-delay: 0.8s;
+  -moz-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+}
+
+.fadeIn.fourth {
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+/* Simple CSS3 Fade-in Animation */
+.underlineHover:after {
+  display: block;
+  left: 0;
+  bottom: -10px;
+  width: 0;
+  height: 2px;
+  background-color: #56baed;
+  content: "";
+  transition: width 0.2s;
+}
+
+.underlineHover:hover {
+  color: #0d0d0d;
+}
+
+.underlineHover:hover:after{
+  width: 100%;
+}
+
+
+
+/* OTHERS */
+
+*:focus {
+    outline: none;
+}
+
+#icon {
+  width:60%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+td.ID{
+  font-size: 40px;
+}
+.leftlayout{
+  border: 0px;
+  border-top-left-radius: 20px; 
+  border-bottom-left-radius: 20px;
+}
+.rightlayout
+{
+   background-color: #ffec42;
+  position:relative;
+   margin: 0px 0px 0px 0px;
+   padding: 0px 0px 0px 0px;
+   text-align: center;
+   display: table;
+   cursor: pointer;
+   vertical-align: middle;
+   display: table-cell;
+   bottom:3px;
+   border-top-right-radius: 20px; border-bottom-right-radius: 20px;
+   height:57px; width:50px;
+}
+/* @keyframes change {
+  0% {
+    background-image: url('/image/loginPart/login1.jpg');
+    position: absolute;
+    opacity: 0.5;
+    z-index: -1;
+    width: 100%;
+    overflow: hidden;
+  }
+  33% {
+    background-image: url('/image/loginPart/login2.jpg');
+    position: absolute;
+    opacity: 0.5;
+    z-index: -1;
+    width: 100%;
+    overflow: hidden;
+  }
+  66% {
+    background-image: url('/image/loginPart/login3.jpg');
+    position: absolute;
+    opacity: 0.5;
+    z-index: -1;
+    width: 100%;
+    overflow: hidden;
+  }
+  100% {
+    background-image: url('/image/loginPart/login4.jpg');
+    position: absolute;
+    opacity: 0.5;
+    z-index: -1;
+    width: 100%;
+    overflow: hidden;
+  }
+} */

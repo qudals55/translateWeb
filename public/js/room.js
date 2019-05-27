@@ -1,6 +1,6 @@
 'use strict';
 var meeting;
-var host = 'localhost'; // HOST_ADDRESS gets injected into room.ejs from the server side when it is rendered
+var host = '35.203.179.143'; // HOST_ADDRESS gets injected into room.ejs from the server side when it is rendered
 $( document ).ready(function() {
     // console.log('address', host);
     /////////////////////////////////
@@ -20,6 +20,7 @@ $( document ).ready(function() {
                 toggleVideo();
             });
             $("#localVideo").prop('muted', true);
+            adjustVideoSize();
         }
     );
 
@@ -43,9 +44,7 @@ $( document ).ready(function() {
     var room = window.location.pathname.match(/([^\/]*)\/*$/)[1];
     meeting.joinRoom(room);
 }); // end of document.ready
-$( window ).resize(function() {
-    adjustVideoSize();
-});
+$( window ).resize(adjustVideoSize);
 function addRemoteVideo(stream, participantID) {
     // $("#"+participantID).remove();
     var $videoBox = $("<div class='videoWrap' id='"+participantID+"'></div>");
@@ -56,47 +55,40 @@ function addRemoteVideo(stream, participantID) {
     adjustVideoSize();
 
 }
+
 function removeRemoteVideo(participantID) {
-    $("#"+participantID).remove();
-    adjustVideoSize();
+   var $remove = $("#"+participantID);
+   if($(".videoWrap").last().attr('id')!=participantID) {
+      $remove.before($(".videoWrap").last());
+   }
+   
+   $remove.remove();
+   adjustVideoSize();
 }
+
 function adjustVideoSize() {
     var numOfVideos = $(".videoWrap").length;
-    if (numOfVideos>0) {
-        var $container = $("#faceCall");
-        var numOfColumns=numOfVideos;
-        if(numOfColumns>2) numOfColumns=2;
-        var newWidth, newHeight;
-        newWidth = $container.width()/numOfColumns;
+    var $container = $("#faceCall");
+    var numOfColumns=Math.min(numOfVideos, 3);
+    
+    var newWidth, newHeight;
+    newWidth = $container.width()/numOfColumns;
 
-        // check if we can start a new row
-        var scale = newWidth/$(".videoWrap").width();
-        newHeight = $(".videoWrap").height()*scale;
+    // check if we can start a new row
+    var scale = newWidth/$(".videoWrap").width();
+    newHeight = $(".videoWrap").height()*scale;
 
-        var percent = (newWidth/$container.width())*100;
-        $(".videoWrap").css("width", percent-5+"%");
-        $(".videoWrap").css("height", "auto");
-        $(".videoWrap").css("display", "table-cell");
-        $(".videoWrap").css("vertical-align", "middle");
+    var percent = (newWidth/$container.width())*100;
+    $(".videoWrap").css("display", "table-cell");
+    $(".videoWrap").css("vertical-align", "middle");
+    $(".videoWrap").css("text-align", "center");
+    $(".videoWrap").css("width", $container.width()-5);
+    $(".videoWrap").css("height", "auto");
 
-        $(".videoBox").prop("width", newWidth*0.9);
+    var numOfRows = parseInt(Math.ceil(numOfVideos/3));
 
-        //var numOfColumns = Math.ceil(Math.sqrt(numOfVideos));
-        // for (var i=2; i<=numOfVideos; i++) {
-        //  if (numOfVideos % i === 0) {
-        //      numOfColumns = i;
-        //      break;
-        //  }
-        // }
-        $('#videosWrapper').find("br").remove();
-        $('.videoWrap:nth-child('+numOfColumns+'n)').after("<br>");
-    } else if (numOfVideos == 2) {
-        $(".videoWrap").width('auto');
-        $("#localVideoWrap").css("width", 20+"%");
-        $('#videosWrapper').find("br").remove();
-    } else {
-        $("#localVideoWrap").width('auto');
-        $("#localVideo").prop('width', 500);
-        $('#videosWrapper').find("br").remove();
-    }
+    $(".videoBox").prop("width", Math.min(newWidth*0.9, $container.height()*0.9/numOfRows*4/3));
+    
+    $('#videosWrapper').find("br").remove();
+    $('.videoWrap:nth-child('+3+'n)').after("<br>");
 }

@@ -1,59 +1,37 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Lato:100');
 body {
     /*
     text-align: center;
     */
-  
-    background :  #56baed;
+
+    /* background :  #56baed; */
+      /* background-image:url('/chaback2.png') ; */
+      background: #7F7FD5;
+    	background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+    	background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+      background-size: cover;
+      font-family:  "Poppins", sans-serif;
+      overflow:hidden;
     /* min-width: 1400px;
     min-height: 700px; */
+
+       text-align: center;
+       color: #FFF;
   }
   p {
     text-align: center;
   }
-   /*로 시작하여
-  h1 {
-    color: white;
-    text-align: center;
+  h1{
+    font-family: "Lato",sans-serif;
   }
-  
-  
-  #heading { color: teal; text-decoration: line-through; }
-   .headings { color: lime; text-decoration: overline; }
-   */
-  
-  /*
-  가로 배치
-  style='display:inline;float:left;
-  <div style='display:inline;min-width:1200px;'><!--빨간 부분-->
-  
-  <div style='display:inline;float:left;width:200px'></div> <!--파란부분-->
-  
-  
-  
-  <div style='display:inline;float:left;width:1000px'></div> <!--연두부분 -->
-  
-  </div>
-  
-  
-  */
+
    #Wrapper {
        position   : relative;
        top        : 0px;
        padding    : 1px;
        background :  #56baed;
    }
-  /*
-   button{
-       background : white;
-       color      : palevioletred;
-  
-       font-size     : 5px;
-       margin        : 2px;
-       padding       : 0.25px 1px;
-       border        : 5px solid palevioletred;
-       border-radius : 4px;
-   }
-  */
    #LoginButton{
        background : white;
        color      : #56baed;
@@ -66,7 +44,7 @@ body {
        width : 50px;
        height : 35px;
    }
-  
+
    #Input{
      padding       : 0.5px;
      margin        : 0.5px;
@@ -76,39 +54,58 @@ body {
      border        : 2px solid #56baed;
      border-radius : 3px;
    }
-  
-  
+
+
   .TEXT{
          color : #56baed;
          font-weight: bold;
    }
-  
-   #exit-btn { position: absolute; top: 20px; right: 20px; text-decoration:none; color : white;
-   font-weight: bold; float:right;}
-  
-   #chat-list { min-width: 400px; height: 900px; overflow: auto; padding: 5px; }
+
+   #exit-btn { position: relative; top: 0px; right:-500px; text-decoration:none; color : white;
+   font-weight: bold; }
+   #exit-btn:hover {color : black;  }
+
+   #chat-list { min-width: 495px; height: 85%; overflow: auto; padding: 5px; position: relative; top: 65px; border: 0px; overflow-x:hidden;  }
    #chat-form { text-align: right; }
-  
+
    * { box-sizing: border-box; }
-   .mine { text-align: right; }
-   .system { text-align: center; }
+   .mine { text-align: right; width:100%; float: right;}
+   .system { text-align: center; color: black; }
    .mine img, .other img {
        max-width: 300px;
        display: inline-block;
-       border: 1px solid silver;
-       border-radius: 5px;
+       border-radius: 3px;
        padding: 2px 5px;
    }
-   .mine div:first-child, .other div:first-child { font-size: 12px; }
+   .mine div:first-child, .other div:first-child {  }
    .mine div:last-child, .other div:last-child {
        display: inline-block;
-       border: 1px solid silver;
-       border-radius: 5px;
+       border-radius: 3px;
        padding: 2px 5px;
        max-width: 300px;
    }
-  
-  
+    .mine div:last-child{
+      background-color: #ffec42;
+      color:black;
+      min-height: 29px;
+      float: right;
+      position: relative;
+      word-wrap:break-word;
+    }
+
+    .other div:last-child {
+    background-color:  white;
+    color:black;
+    position: relative;
+    min-height: 29px;
+    float: left;
+    word-wrap:break-word;
+    /* top:24px; */
+    }
+    .other{
+      width: 100%;
+    }
+
    #chat-form { text-align: right; }
    label[for='gif'], #chat, #chat-form [type='submit'] {
        display: inline-block;
@@ -117,18 +114,9 @@ body {
    }
    label[for='gif'] { cursor: pointer; padding: 5px; }
    #gif { display: none; }
-  
-   /* table, table th, table td {
-       text-align: center;
-       border: 1px solid silver;
-       border-collapse: collapse;
-   } */
-  
-  
-   body {
-       text-align: center;
-       color: #FFF;
-   }
+
+
+
    div#wapper {
        position: relative;
        width: 100%;
@@ -136,47 +124,50 @@ body {
        min-height: 300px;
        margin: 0 auto;
    }
-   header, nav, aside, section {
+   header, nav, aside, section,{
        border: 1px solid #999;
        margin: 5px;
        padding: 10px;
    }
-   header {
-       height: 50px;
-       background-color: red;
-   }
-   nav, section, aside {
+
+   nav, section, aside ,#chat-list{
+
        float: left;
-       height: 200px;
    }
-   nav {
-       background-color: goldenrod;
-       width: 100px;
-   }
-   /* section {
-       background-color: white;
-       width: 1050px;
-       height: 600px;
-   }
-   aside {
-       background-color: white;
-       width: 500px;
-       height: 600px;
-   } */
    section {
-       background-color: white;
-       width: 63%;
-       height: 1000px;
+     /* 똑같이 맞출땐 vh */
+       border-radius: 20px;
+       /* background-color: white; */
+
+       background-color: rgba( 255, 255, 255, 0.3 );
+       width: 55%;
+       height: 75vh;
    }
    aside {
       display: inline-block;
+      position: absolute; right: 45px;
+       /* background-color: #E2E2E2; */
+       background-color: rgba( 255, 255, 255, 0.3 );
+       border-radius: 20px;
+       width: 500px;
+       height: 67vh;
+       max-width:  550px;
+       min-width:  300px;
+       overflow: auto;
+
+       /* overflow: auto; */
+   }
+
+   .bfaside {
+      float: left;
+      display: inline-block;
       position: absolute;
-       background-color: white;
        width: 550px;
-       height: 1000px;
+       height: 80vh;
        /* overflow: auto; */
    }
    footer {
+      float: left;
        height: 50px;
        clear: both;
    }
@@ -185,7 +176,470 @@ body {
        margin: 20px;
        background-color: #999;
    }
-  
+
   @media (max-width : 90%){
-  
+
   }
+
+
+    .iplayout
+    {
+    	position:absolute;  bottom:-11%; right: 15px;
+    }
+
+    .leftlayout
+    {
+    	border-top-left-radius: 20px;  border-bottom-left-radius: 20px; position:absolute; right: 80px; bottom: 630%;
+      height:7vh; width:450px; font-size:20px;
+      background-color: rgba( 255, 255, 255, 0.3 );
+      /* border: 1px solid #fff; */
+       border-color: transparent;
+    border: none;
+
+    }
+
+    .rightlayout
+    {
+       /* background-color: #ffec42; */
+       /* color: #FFF; */
+       color: #000;
+       margin: 0px 0px 0px 0px;
+       padding: 0px 0px 0px 0px;
+       text-align: center;
+       display: table;
+       cursor: pointer;
+       vertical-align: middle;
+       display: table-cell;
+    	 border-top-right-radius: 20px; border-bottom-right-radius: 20px;  position:absolute; right: 30px; bottom: 630%;
+       height:7vh; width:50px;
+       background-color: rgba( 255, 255, 255, 0.3 );
+       /* background-color: transparent !important; */
+       /* border: 1px solid #fff; */
+        font-family: "Poppins" , sans-serif;
+        border-color: transparent;
+        border-top-color :none;
+        border-right-color :none;
+        border-bottom-color:none;
+        border-left-color  :#999;
+    }
+
+    .btnstyle
+    {
+       /* background-color: #ffec42; */
+       /* color: #FFF; */
+       color: #000;
+       margin: 0px 0px 0px 0px;
+       padding: 0px 0px 0px 0px;
+       text-align: center;
+       font-size: 12px;
+       display: table;
+       cursor: pointer;
+       vertical-align: middle;
+       display: table-cell;
+       /* background-color: transparent !important; */
+       /* border: 1px solid #fff; */
+        font-family: "Poppins" , sans-serif;
+        letter-spacing: 0.1em;
+    }
+
+  .css-arrow {
+      display: inline-block;
+      position: relative;
+      margin: 0 0 0 8px;
+      padding: 0;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-left-color: #000;
+  }
+  .css-arrow:before, .css-arrow:after {
+      display: block;
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 0;
+      height: 0;
+  }
+  .css-arrow:before {
+      left: -30px;
+      margin-top: -10px;
+      border: 10px solid transparent;
+      border-right-color: #000;
+  }
+  .css-arrow:after {
+      left: -20px;
+      margin-top: -14px;
+      border: 14px solid transparent;
+      border-left-color: #eee;
+  }
+/*
+   .size
+    {
+       	position:relative;
+    } */
+
+
+  /* 채팅 디자인   */
+  .clear
+ {
+ 	clear: both;
+ }
+
+  .blank
+  {
+  	clear: both;
+  	height: 30px;
+  }
+  .mine .a
+  {
+    box-sizing: border-box;
+  	float: right;
+  	position: relative;
+  	min-height: 24px;
+  	max-width: calc(100% - 64px);
+  	left: 2px;
+  	background-color: #ffec42;
+  	border-radius: 3px;
+  	z-index: 2;
+  	padding: 0px 4px 0px 4px;
+  	word-break: break-all;
+  }
+
+   .mine2
+  {
+    position:fixed;
+    display: inline-block;
+  	float: right;
+  	min-height: 24px;
+    width: 461px;
+
+    top:20%;
+  	z-index: 2;
+  	padding: 0px 4px 0px 4px;
+  	word-break: break-all;
+  }
+
+
+   .mine1
+  {
+    display: inline-block;
+    float: right;
+    min-height: 24px;
+    width: 461px;
+
+    height: 61px;
+    left: 2px;
+    z-index: 2;
+    padding: 0px 4px 0px 4px;
+    word-break: break-all;
+  }
+
+  .mine .b
+  {
+  	float: right;
+  	position: relative;
+  	width: 8px;
+  	height: 22px;
+  	background: url(/chat_balloon_yellow.right.png) no-repeat;
+  	z-index: 1;
+  }
+
+
+
+  .other .profile_image
+  {
+  	float: left;
+  	width: 40px;
+  	height: 40px;
+  	border-radius: 14px;
+  }
+
+  .other .a
+  {
+  	float: left;
+  	position: relative;
+  	width: 8px;
+  	height: 22px;
+  	background: url(/chat_balloon_white.left.png) no-repeat;
+  	z-index: 1;
+    /* top:24px; */
+  }
+
+  .other .b
+  {
+  	float: left;
+  	position: relative;
+  	min-height: 24px;
+  	max-width: calc(100% - 64px);
+  	left: -2px;
+  	background-color: #ffffff;
+  	border-radius: 3px;
+  	z-index: 2;
+  	padding: 0px 4px 0px 4px;
+  	word-break: break-all;
+  }
+
+
+
+   #circle1 {
+      position   : relative;
+     float: left;
+     top  : 14px;
+    width:40px;
+    height:40px;
+    border-radius:75px;
+    text-align:center;
+    margin:0 auto;
+    font-size:3px;
+    vertical-align:middle;
+    line-height:40px;
+    font-weight: bold;
+    color:white;
+
+  }
+  .circle1 {
+     position   : relative;
+    float: left;
+    top  : 14px;
+   width:40px;
+   height:40px;
+   border-radius:75px;
+   text-align:center;
+   margin:0 auto;
+   font-size:3px;
+   vertical-align:middle;
+   line-height:40px;
+   font-weight: bold;
+   color:white;
+
+ }
+
+  #circle2 {
+      background-color:#0009;
+      border:1px solid #ff0000;
+      width:100px; height:100px;
+      border-radius:75px;
+      text-align:center;
+      margin:0 auto;
+      font-size:12px; color:#fff;
+      vertical-align:middle;
+      line-height:100px;
+}
+
+#chat-list
+#chat-list .blank
+{
+	clear: both;
+  width: 100%;
+	height: 10px;
+}
+
+#chat-list .msg
+{
+	/* height: calc(100% - 72px); */
+	overflow-y: scroll;
+
+	font-size: 12px;
+}
+
+#chat-list .msg .time
+{
+	font-size: 10px;
+}
+
+#chat-list .msg .mytalk
+{
+	float: right;
+	width: 100%;
+}
+
+#chat-list .msg .mytalk .time
+{
+	float: right;
+	bottom: 0;
+}
+
+#chat-list .msg .mytalk .a
+{
+  /* 내가 말한 메시지 */
+	float: right;
+	position: relative;
+	min-height: 24px;
+	max-width: calc(100% - 64px);
+	left: 2px;
+	background-color: #ffec42;
+	border-radius: 3px;
+	z-index: 2;
+	padding: 0px 4px 0px 4px;
+	word-break: break-all;
+}
+
+#chat-list .msg .mytalk .b
+{
+  /* 내 말꼬리 */
+	float: right;
+	position: relative;
+	width: 8px;
+	height: 22px;
+	background: url(./chat_balloon_yellow.right.png) no-repeat;
+	z-index: 1;
+}
+
+#chat-list .msg .othertalk
+{
+	float: left;
+	width: 100%;
+}
+
+#chat-list .msg .othertalk .profile_image
+{
+	float: left;
+	width: 40px;
+	height: 40px;
+	border-radius: 14px;
+}
+
+#chat-list .msg .othertalk .box
+{
+	float: left;
+	width: calc(100% - 48px);
+}
+
+#chat-list .msg .othertalk .box .profile_name
+{
+	font-size: 12px;
+}
+
+#chat-list .msg .othertalk .box .a
+{
+	float: left;
+	position: relative;
+	width: 8px;
+	height: 22px;
+	background: url(./chat_balloon_white.left.png) no-repeat;
+	z-index: 1;
+}
+
+#chat-list .msg .othertalk .box .b
+{
+	float: left;
+	position: relative;
+	min-height: 24px;
+	max-width: calc(100% - 64px);
+	left: -2px;
+	background-color: #ffffff;
+	border-radius: 3px;
+	z-index: 2;
+	padding: 0px 4px 0px 4px;
+	word-break: break-all;
+}
+
+#chat-list .msg .othertalk .box .time
+{
+	float: left;
+}
+
+
+/* 버튼 디자인 */
+
+@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+
+/* Global Button Styles */
+a.animated-button:link, a.animated-button:visited {
+	position: relative;
+	display: block;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  text-indent: 5px;
+	margin: 30px auto 0;
+	padding: 14px 15px;
+	color: #FFF;
+	font-size:14px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	overflow: hidden;
+	letter-spacing: 6px;
+	border-radius: 0;
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+a.animated-button:link:after, a.animated-button:visited:after {
+	content: "";
+	position: absolute;
+	height: 0%;
+	left: 50%;
+	top: 50%;
+	width: 50%;
+	z-index: -1;
+	-webkit-transition: all 0.75s ease 0s;
+	-moz-transition: all 0.75s ease 0s;
+	-o-transition: all 0.75s ease 0s;
+	transition: all 0.75s ease 0s;
+}
+a.animated-button:link:hover, a.animated-button:visited:hover {
+	color: #FFF;
+	text-shadow: none;
+}
+a.animated-button:link:hover:after, a.animated-button:visited:hover:after {
+	height: 1000%;
+  width: 1000%;
+}
+/* Victoria Buttons */
+
+a.animated-button.victoria-two {
+	border: 2px solid #FFF;
+  color:black;
+}
+a.animated-button.victoria-two:after {
+	background: #FFF;
+  color:black;
+	-moz-transform: translateX(-50%) translateY(-50%) rotate(50deg);
+	-ms-transform: translateX(-50%) translateY(-50%) rotate(50deg);
+	-webkit-transform: translateX(-50%) translateY(-50%) rotate(50deg);
+	transform: translateX(-50%) translateY(-50%) rotate(50deg);
+}
+
+
+
+
+.wrap {
+  align-items: center;
+  justify-content: center;
+  float: right;
+  position: fixed;
+  left:77%;
+  top:20%;
+}
+
+.button1 {
+  width: 140px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color:  transparent;
+  border: none;
+  border-radius: 45px;
+  /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
+
+.button1:hover {
+  background-color: #FFF;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.4);
+  color: #000;
+  transform: translateY(-7px);
+}

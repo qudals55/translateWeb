@@ -3,7 +3,10 @@ html
     meta(charset='utf-8')
     style
       include chat.css
-
+    script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+    script(src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js")
+    link(rel="stylesheet" href="https://icono-49d6.kxcdn.com/icono.min.css")
+    link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous")
 block content
   h1= title
   script(src='/socket.io/socket.io.js')
@@ -14,59 +17,89 @@ block content
   link(rel='sytlesheet', type='text/css', href='/css/room.css', media='screen')
   style
     #videosWrapper {vertical-aligin : middle;}
-  a#exit-btn(href='/') EXIT
   
+  div(class="col-md-3 col-sm-3 col-xs-6")   
+    a#exit-btn(href='/' class="btn btn-sm animated-button victoria-two"  style="width: 150px; " ) EXIT
+
   div(id='wapper')
     section(id="faceCall")
-        p(class='TEXT') CAM
+        
           div(class='container')
             div(id='videos')
               div(id='videosWrapper', style='{display: table; width: 100%;}')
                 div(id='localVideoWrap', class='videoWrap', style='{ display: table-cell; vertical-align: middle;}')
                   video(class='videoBox', id='localVideo', autoplay)
       
-    aside
-        p.TEXT CHAT
-        #chat-list
+    div.bfaside
+      aside    
+        div#chat-list
+          .mine2( style=' background-color:none; ')  
+            div(class="wrap")
+              form#record-form(action='/download' method='get')  
+                button(type='submit' class="button1") Chat Record
+          
           for chat in chats
-            if chat.user === user
+            if chat.user === user 
               .mine(style='color:' + chat.user)
-                div= chat.id
+                if chat.user.length >= 6 
+                  div= chat.id.substr(0,3)
+                else
+                  div= chat.id
                 if chat.gif
                   img(src='/gif/' + chat.gif)
                 else
+                  div(class="b")
                   div= chat.chat
+              .blank  
+              .clear
             else if chat.user === 'system'
-              .system
+              .system(style="color:black;")
                 div= chat.chat
-            else
+            else 
               .other(style='color:' + chat.user)
-                div= chat.id
+                if chat.user.length >= 3 
+                  div(id="circle1" style='font-size:15px; background-color:'+chat.user) #{chat.id.substr(0,1)}
+                  
+                else
+                  div(id="circle1" style='background-color:'+chat.user) #{chat.id}
+              
+                
                 if chat.gif
                   img(src='/gif/' + chat.gif)
                 else
+                  div=chat.id
+                  div(class="a")
                   div= chat.chat
-
-
-    footer
-      form#chat-form(action='/chat' method='post' enctype='multipart/form-data')
-        label(for='gif') GIF Upload
-        input#gif(type='file' name='gif' accept='image/gif')
-        input#chat(name='chat')
-        button(type='submit') Submit
-      form#record-form(action='/download' method='get')  
-        button(type='submit') DownLoad Chats 
+              .blank
+              .clear
+                //-
+                  div(class="profile_image" style ="background: url(./profile_image.png) no-repeat;" )
+                  div(class="box")
+                    div(class= "profile_name") name
+                    div(class ="a")
+                    div(class="b") msg
+                    div(class="time") time
+                  div(class="clear")
+      div( class="iplayout")
+          form#chat-form(class="size" action='/chat' method='post' enctype='multipart/form-data')
+            input#gif(type='file' name='gif' accept='image/gif')
+            input#chat(name='chat' class="leftlayout" style="height:7vh; width:450px; font-size:20px;" placeholder="Type your Message")
+            button(type='submit' class="rightlayout" style="height:7vh; width:50px;") 
+              div(class="icono-locationArrow") 
+              //i(class="fas fa-location-arrow")
+              //i(class="fas fa-paper-plane")
+              //i(class="far fa-paper-plane")
         
   script(src='/socket.io/socket.io.js')
   script(src='/annyang.js')
   script.
-     var socket = io.connect('https://localhost:443/chat', {
+     var socket = io.connect('https://35.203.179.143:443/chat', {
      transports: [ 'websocket']
     });
-    var userCheck = #{ findlang };
+    var user_lang = #{ findlang };
     //안양 모듈 실행 setlanguage로 사용자 언어로 변환
-      annyang.setLanguage(userCheck.lang);
-      annyang.start({ autoRestart: true, continuous: true });
+      annyang.setLanguage(user_lang.lang);
+      annyang.start({ autoRestart: true, continuous: false });
       var recognition = annyang.getSpeechRecognizer();
       var final_transcript = '';
       recognition.interimResults = true;
@@ -118,36 +151,77 @@ block content
     });
     //채팅방에 채팅이 올라온 경우
     socket.on('chat', function (data) {
-
       var needchat = data.chat.split('=');
       var needindex = needchat.findIndex(function(e){
-        return e== userCheck.lang;
+        return e== user_lang.lang;
       });
       needchat = needchat[needindex+1];
       var div = document.createElement('div');
       //올라온 채팅이 내가 말한 내용이면 우측에 아니면 좌측에 게시
       if (data.user === '#{user}') {
         div.classList.add('mine');
-      } else {
-        div.classList.add('other');
+      } 
+      else {
+        div.classList.add('other');  
+        var circle = document.createElement('div');
+        circle.classList.add('circle1');
+        circle.style.color="white";
+        circle.style.backgroundColor= data.user;       
+        circle.style.fontSize="15px";
+        div.appendChild(circle);
+        //긴 닉네임 자르기 
+        if(data.id.length >=3){
+         circle.innerHTML = data.id.substr(0,1);
+        }
+        else{
+         circle.innerHTML = data.id;
+        }
       }
-      var name = document.createElement('div');
-      name.textContent = data.id;
-      div.appendChild(name);
-      if (needchat) {
+      
+      
+      //말꼬리 추가 
+      //내가 말할때
+      if (data.user === '#{user}') {
+        var tail1 = document.createElement('div');
+        tail1.classList.add('b');
+        div.appendChild(tail1);
+      }
+      //남이 말할때
+      else {
+        //닉네임 긴 경우가 있으므로 닉네임 표시
+        var name = document.createElement('div');
+        name.textContent = chat.id;
+        div.appendChild(name);
+        //원에 닉네임 표시
+        var tail2 = document.createElement('div');
+        tail2.classList.add('a');
+        div.appendChild(tail2);
+      }
+      
+      if (needchat) {        
         var chat = document.createElement('div');
         chat.textContent = needchat;
         div.appendChild(chat);
-      } else {
+      } 
+      else {
         var gif = document.createElement('img');
         gif.src = '/gif/' + data.gif;
         div.appendChild(gif);
       }
+      
       div.style.color = data.user;
       document.querySelector('#chat-list').appendChild(div);
+      //빈칸 추가
+      var oneblank = document.createElement('div');
+      oneblank.className="blank";
+      div.parentNode.appendChild(oneblank);
+      
+      var oneclear = document.createElement('div');
+      oneclear.className="clear";
+      div.parentNode.appendChild(oneclear);
+      
       document.querySelector('#chat-list').scrollTop = document.querySelector('#chat-list').scrollHeight;
     });
-
     
     document.querySelector('#chat-form').addEventListener('submit', function (e) {
       e.preventDefault();
@@ -192,6 +266,7 @@ block content
     a.download = fileName;
     a.dispatchEvent(new MouseEvent('click'));
     };
+
 
     document.querySelector('#gif').addEventListener('change', function (e) {
       var formData = new FormData();

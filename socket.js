@@ -26,7 +26,8 @@ module.exports = (server, app, sessionMiddleware) => {
   io.adapter(redis({
     host: process.env.REDIS_HOST,
     port: process.env.REDIS_PORT,
-    password: process.env.REDIS_PASSWORD
+    password: process.env.REDIS_PASSWORD,
+    requestsTimeout: 3000,
   }));
   bindListeners(io);
   io.use((socket, next) => {
@@ -79,7 +80,7 @@ module.exports = (server, app, sessionMiddleware) => {
           console.log(err);
         } else{
         if (clients.length === 0) {
-          axios.delete(`https://localhost:443/room/${roomId}`)
+          axios.delete(`https://35.203.179.143:443/room/${roomId}`)
             .then(() => {
               console.log('방 제거 성공');
             })

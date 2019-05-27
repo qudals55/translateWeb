@@ -2,32 +2,49 @@ html
   head
     meta(charset='utf-8')
     style
-      //- main2.css를 적용버전
-      include main2.css  
-  body
+      include main.css  
+body
 block content
   div(class = "container-table100")
     div(class = "wrap-table100")
-      h1 Chat room list
+      h1(style = "color : white") Chat room list
       br
-      table(id="keywords" class= "table100")
-        thead
-          tr(class="table100-head")
-            th Room Name
-            th Room Type
-            th Max People
-            th Header
-            th join
-        tbody
-          for room in rooms
-            tr(data-id=room._id)
-              td= room.title
-              td= room.password ? 'Private Room' : 'Public Room'
-              td= room.max
-              td(style='color:' + room.owner)= room.owner
-              -var password = room.password ? 'true' : 'false';
-              td
-                button(data-password=password data-id=room._id).join-btn Enter
+      div.room-list
+        each room, idx in rooms
+          if idx%3 == 0
+            label(href = "#layer2" for = room.title).room-btn
+              input(type="checkbox" id = room.title, style = "display : none").openBtn
+              div.dim-layer
+                div.dimBg
+                div.pop-layer.fadeInDown
+                  div.pop-container
+                    div.pop-conts
+                      // contents
+                      div(class = "content-header")
+                        p(class = "header-text")=room.title 
+                      div(class = "content-body")
+                        p(class = "owner-name", style = "text-align : left; font-size : 14px") 방장
+                        p(class = "owner-name")=room.owner
+                        p(class = "max-count", style = "text-align : left; font-size : 14px") 최대 인원
+                        p(class = "max-count")=room.max + "명"
+                        -var password = room.password ? 'true' : 'false'
+                      input(class = "list-Btn", id = room._id, type = "checkbox", style = "display : none")
+                      label(class = "list-Btn" for = room._id style = "text-align : left; font-size : 14px").max-count 현재 참가자
+                      ul(class = "user-list")
+                      for user in rooms[idx+1]
+                        li(style = "text-align : center").max-count= user.id + " : " + user.lang
+                      div.max-count= rooms[idx+2] + "명"
+                      div.btn-r
+                        button(data-password=password data-id=room._id).join-btn Enter
+                        
+              div.room-conts
+                div.room-title
+                  div.room-name= room.title
+                div.room-body
+                  div.room-max= room.max
+                  div.room-pri(isPrivate = room.password)= room.password ? 'Private Room' : 'Public Room'
+          
+          
       p If you want to make room, Click bottom button!
         br
         a(href='/room')
@@ -35,7 +52,7 @@ block content
 .error-message= error
 script(src='/socket.io/socket.io.js')
 script.
-  var socket = io.connect('https://localhost:443/room', {
+  var socket = io.connect('https://35.203.179.143:443/room', {
     transports: [ 'websocket']
   });
   socket.on('newRoom', function (data) {
