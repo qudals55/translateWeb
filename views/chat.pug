@@ -83,7 +83,7 @@ block content
                   div(class="clear")
       div( class="iplayout")
           form#chat-form(class="size" action='/chat' method='post' enctype='multipart/form-data')
-            input#chat(name='chat' class="leftlayout" placeholder="    Type your Message" style="height:7vh; width:82%; ")
+            input#chat(name='chat' class="leftlayout" placeholder="Type your Message" style="height:7vh; width:82%;  text-indent:5%;")
             button(type='submit' class="rightlayout" style="height:7vh; width:15%; bottom:1%; vertical-align:top; ") 
               div(class="icono-locationArrow") 
               //i(class="fas fa-location-arrow")
@@ -93,7 +93,7 @@ block content
   script(src='/socket.io/socket.io.js')
   script(src='/annyang.js')
   script.
-     var socket = io.connect('https://35.203.179.143:443/chat', {
+     var socket = io.connect('https://localhost:443/chat', {
      transports: [ 'websocket']
     });
     var user_lang = #{ findlang };
@@ -116,8 +116,10 @@ block content
           console.log("interim_transcript="+interim_transcript);
         }
       }
-      // 번역 결과를 서버에 전송
-      if (final_transcript) {
+      var getReviews = ['리뷰 쓰기', 'Write a review'];
+      if (getReviews.includes(final_transcript)){
+        
+      } else if (final_transcript) {
         var xhr = new XMLHttpRequest();
         xhr.onload = function () {
         if (xhr.status === 200) {
