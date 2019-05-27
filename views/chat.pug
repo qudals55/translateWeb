@@ -20,7 +20,12 @@ block content
   
   div(class="col-md-3 col-sm-3 col-xs-6")   
     a#exit-btn(href='/' class="btn btn-sm animated-button victoria-two"  style="width: 150px; " ) EXIT
-
+    
+  .mine2( style=' background-color:none; ')  
+    div(class="wrap")
+      form#record-form(action='/download' method='get')  
+        button(type='submit' class="button1") Chat Record
+        
   div(id='wapper')
     section(id="faceCall")
         
@@ -33,10 +38,6 @@ block content
     div.bfaside
       aside    
         div#chat-list
-          .mine2( style=' background-color:none; ')  
-            div(class="wrap")
-              form#record-form(action='/download' method='get')  
-                button(type='submit' class="button1") Chat Record
           
           for chat in chats
             if chat.user === user 
@@ -82,9 +83,8 @@ block content
                   div(class="clear")
       div( class="iplayout")
           form#chat-form(class="size" action='/chat' method='post' enctype='multipart/form-data')
-            input#gif(type='file' name='gif' accept='image/gif')
-            input#chat(name='chat' class="leftlayout" style="height:7vh; width:450px; font-size:20px;" placeholder="Type your Message")
-            button(type='submit' class="rightlayout" style="height:7vh; width:50px;") 
+            input#chat(name='chat' class="leftlayout" placeholder="    Type your Message" style="height:7vh; width:82%; ")
+            button(type='submit' class="rightlayout" style="height:7vh; width:15%; bottom:1%; vertical-align:top; ") 
               div(class="icono-locationArrow") 
               //i(class="fas fa-location-arrow")
               //i(class="fas fa-paper-plane")
@@ -93,7 +93,7 @@ block content
   script(src='/socket.io/socket.io.js')
   script(src='/annyang.js')
   script.
-     var socket = io.connect('https://35.203.179.143:443/chat', {
+     var socket = io.connect('https://localhost:443/chat', {
      transports: [ 'websocket']
     });
     var user_lang = #{ findlang };
@@ -190,7 +190,7 @@ block content
       else {
         //닉네임 긴 경우가 있으므로 닉네임 표시
         var name = document.createElement('div');
-        name.textContent = chat.id;
+        name.textContent = data.id;
         div.appendChild(name);
         //원에 닉네임 표시
         var tail2 = document.createElement('div');

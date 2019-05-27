@@ -52,7 +52,7 @@ block content
 .error-message= error
 script(src='/socket.io/socket.io.js')
 script.
-  var socket = io.connect('https://35.203.179.143:443/room', {
+  var socket = io.connect('https://localhost:443/room', {
     transports: [ 'websocket']
   });
   socket.on('newRoom', function (data) {

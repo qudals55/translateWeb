@@ -8,8 +8,8 @@ body {
     /* background :  #56baed; */
       /* background-image:url('/chaback2.png') ; */
       background: #7F7FD5;
-    	background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
-    	background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+       background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+       background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
       background-size: cover;
       font-family:  "Poppins", sans-serif;
       overflow:hidden;
@@ -61,11 +61,11 @@ body {
          font-weight: bold;
    }
 
-   #exit-btn { position: relative; top: 0px; right:-500px; text-decoration:none; color : white;
+   #exit-btn { position: absolute; top: 5%; right:5px; text-decoration:none; color : white;
    font-weight: bold; }
    #exit-btn:hover {color : black;  }
 
-   #chat-list { min-width: 495px; height: 85%; overflow: auto; padding: 5px; position: relative; top: 65px; border: 0px; overflow-x:hidden;  }
+   #chat-list { min-width: 98%; height: 87%; overflow: auto; padding: 5px; position: relative; top:11%; border: 0px; overflow-x:hidden;  }
    #chat-form { text-align: right; }
 
    * { box-sizing: border-box; }
@@ -123,6 +123,7 @@ body {
        text-align: left;
        min-height: 300px;
        margin: 0 auto;
+       top:10%;
    }
    header, nav, aside, section,{
        border: 1px solid #999;
@@ -136,34 +137,32 @@ body {
    }
    section {
      /* 똑같이 맞출땐 vh */
+     float: left;
        border-radius: 20px;
        /* background-color: white; */
 
        background-color: rgba( 255, 255, 255, 0.3 );
-       width: 55%;
+       width: 70%;
        height: 75vh;
    }
    aside {
       display: inline-block;
-      position: absolute; right: 45px;
+      position: relative;
+      float:left;
        /* background-color: #E2E2E2; */
        background-color: rgba( 255, 255, 255, 0.3 );
        border-radius: 20px;
-       width: 500px;
        height: 67vh;
-       max-width:  550px;
-       min-width:  300px;
-       overflow: auto;
-
+       width: 97%;
        /* overflow: auto; */
    }
 
    .bfaside {
       float: left;
-      display: inline-block;
-      position: absolute;
-       width: 550px;
-       height: 80vh;
+      position: relative;
+      left:1%;
+      width: 30%;
+      height: 80vh;
        /* overflow: auto; */
    }
    footer {
@@ -184,18 +183,22 @@ body {
 
     .iplayout
     {
-    	position:absolute;  bottom:-11%; right: 15px;
+      float:left;
+      position: relative;
+      width: 100%;
+      top:1%;
+      left: -3%
     }
 
     .leftlayout
     {
-    	border-top-left-radius: 20px;  border-bottom-left-radius: 20px; position:absolute; right: 80px; bottom: 630%;
-      height:7vh; width:450px; font-size:20px;
+       border-top-left-radius: 20px;  border-bottom-left-radius: 20px;
+      font-size:20px;
       background-color: rgba( 255, 255, 255, 0.3 );
       /* border: 1px solid #fff; */
-       border-color: transparent;
-    border: none;
-
+      border-color: transparent;
+      border: none;
+      position: relative;
     }
 
     .rightlayout
@@ -210,8 +213,7 @@ body {
        cursor: pointer;
        vertical-align: middle;
        display: table-cell;
-    	 border-top-right-radius: 20px; border-bottom-right-radius: 20px;  position:absolute; right: 30px; bottom: 630%;
-       height:7vh; width:50px;
+        border-top-right-radius: 20px; border-bottom-right-radius: 20px;
        background-color: rgba( 255, 255, 255, 0.3 );
        /* background-color: transparent !important; */
        /* border: 1px solid #fff; */
@@ -221,6 +223,8 @@ body {
         border-right-color :none;
         border-bottom-color:none;
         border-left-color  :#999;
+
+        position: relative;
     }
 
     .btnstyle
@@ -275,48 +279,49 @@ body {
 /*
    .size
     {
-       	position:relative;
+          position:relative;
     } */
 
 
   /* 채팅 디자인   */
   .clear
  {
- 	clear: both;
+    clear: both;
  }
 
   .blank
   {
-  	clear: both;
-  	height: 30px;
+     clear: both;
+     height: 30px;
   }
   .mine .a
   {
     box-sizing: border-box;
-  	float: right;
-  	position: relative;
-  	min-height: 24px;
-  	max-width: calc(100% - 64px);
-  	left: 2px;
-  	background-color: #ffec42;
-  	border-radius: 3px;
-  	z-index: 2;
-  	padding: 0px 4px 0px 4px;
-  	word-break: break-all;
+     float: right;
+     position: relative;
+     min-height: 24px;
+     max-width: calc(100% - 64px);
+     left: 2px;
+     background-color: #ffec42;
+     border-radius: 3px;
+     z-index: 2;
+     padding: 0px 4px 0px 4px;
+     word-break: break-all;
   }
 
    .mine2
   {
     position:fixed;
     display: inline-block;
-  	float: right;
-  	min-height: 24px;
+     float: right;
+     min-height: 24px;
     width: 461px;
+    right :1%;
 
-    top:20%;
-  	z-index: 2;
-  	padding: 0px 4px 0px 4px;
-  	word-break: break-all;
+    top:21%;
+     z-index: 2;
+     padding: 0px 4px 0px 4px;
+     word-break: break-all;
   }
 
 
@@ -336,47 +341,47 @@ body {
 
   .mine .b
   {
-  	float: right;
-  	position: relative;
-  	width: 8px;
-  	height: 22px;
-  	background: url(/chat_balloon_yellow.right.png) no-repeat;
-  	z-index: 1;
+     float: right;
+     position: relative;
+     width: 8px;
+     height: 22px;
+     background: url(/chat_balloon_yellow.right.png) no-repeat;
+     z-index: 1;
   }
 
 
 
   .other .profile_image
   {
-  	float: left;
-  	width: 40px;
-  	height: 40px;
-  	border-radius: 14px;
+     float: left;
+     width: 40px;
+     height: 40px;
+     border-radius: 14px;
   }
 
   .other .a
   {
-  	float: left;
-  	position: relative;
-  	width: 8px;
-  	height: 22px;
-  	background: url(/chat_balloon_white.left.png) no-repeat;
-  	z-index: 1;
+     float: left;
+     position: relative;
+     width: 8px;
+     height: 22px;
+     background: url(/chat_balloon_white.left.png) no-repeat;
+     z-index: 1;
     /* top:24px; */
   }
 
   .other .b
   {
-  	float: left;
-  	position: relative;
-  	min-height: 24px;
-  	max-width: calc(100% - 64px);
-  	left: -2px;
-  	background-color: #ffffff;
-  	border-radius: 3px;
-  	z-index: 2;
-  	padding: 0px 4px 0px 4px;
-  	word-break: break-all;
+     float: left;
+     position: relative;
+     min-height: 24px;
+     max-width: calc(100% - 64px);
+     left: -2px;
+     background-color: #ffffff;
+     border-radius: 3px;
+     z-index: 2;
+     padding: 0px 4px 0px 4px;
+     word-break: break-all;
   }
 
 
@@ -429,114 +434,114 @@ body {
 #chat-list
 #chat-list .blank
 {
-	clear: both;
+   clear: both;
   width: 100%;
-	height: 10px;
+   height: 10px;
 }
 
 #chat-list .msg
 {
-	/* height: calc(100% - 72px); */
-	overflow-y: scroll;
+   /* height: calc(100% - 72px); */
+   overflow-y: scroll;
 
-	font-size: 12px;
+   font-size: 12px;
 }
 
 #chat-list .msg .time
 {
-	font-size: 10px;
+   font-size: 10px;
 }
 
 #chat-list .msg .mytalk
 {
-	float: right;
-	width: 100%;
+   float: right;
+   width: 100%;
 }
 
 #chat-list .msg .mytalk .time
 {
-	float: right;
-	bottom: 0;
+   float: right;
+   bottom: 0;
 }
 
 #chat-list .msg .mytalk .a
 {
   /* 내가 말한 메시지 */
-	float: right;
-	position: relative;
-	min-height: 24px;
-	max-width: calc(100% - 64px);
-	left: 2px;
-	background-color: #ffec42;
-	border-radius: 3px;
-	z-index: 2;
-	padding: 0px 4px 0px 4px;
-	word-break: break-all;
+   float: right;
+   position: relative;
+   min-height: 24px;
+   max-width: calc(100% - 64px);
+   left: 2px;
+   background-color: #ffec42;
+   border-radius: 3px;
+   z-index: 2;
+   padding: 0px 4px 0px 4px;
+   word-break: break-all;
 }
 
 #chat-list .msg .mytalk .b
 {
   /* 내 말꼬리 */
-	float: right;
-	position: relative;
-	width: 8px;
-	height: 22px;
-	background: url(./chat_balloon_yellow.right.png) no-repeat;
-	z-index: 1;
+   float: right;
+   position: relative;
+   width: 8px;
+   height: 22px;
+   background: url(./chat_balloon_yellow.right.png) no-repeat;
+   z-index: 1;
 }
 
 #chat-list .msg .othertalk
 {
-	float: left;
-	width: 100%;
+   float: left;
+   width: 100%;
 }
 
 #chat-list .msg .othertalk .profile_image
 {
-	float: left;
-	width: 40px;
-	height: 40px;
-	border-radius: 14px;
+   float: left;
+   width: 40px;
+   height: 40px;
+   border-radius: 14px;
 }
 
 #chat-list .msg .othertalk .box
 {
-	float: left;
-	width: calc(100% - 48px);
+   float: left;
+   width: calc(100% - 48px);
 }
 
 #chat-list .msg .othertalk .box .profile_name
 {
-	font-size: 12px;
+   font-size: 12px;
 }
 
 #chat-list .msg .othertalk .box .a
 {
-	float: left;
-	position: relative;
-	width: 8px;
-	height: 22px;
-	background: url(./chat_balloon_white.left.png) no-repeat;
-	z-index: 1;
+   float: left;
+   position: relative;
+   width: 8px;
+   height: 22px;
+   background: url(./chat_balloon_white.left.png) no-repeat;
+   z-index: 1;
 }
 
 #chat-list .msg .othertalk .box .b
 {
-	float: left;
-	position: relative;
-	min-height: 24px;
-	max-width: calc(100% - 64px);
-	left: -2px;
-	background-color: #ffffff;
-	border-radius: 3px;
-	z-index: 2;
-	padding: 0px 4px 0px 4px;
-	word-break: break-all;
+   float: left;
+   position: relative;
+   min-height: 24px;
+   max-width: calc(100% - 64px);
+   left: -2px;
+   background-color: #ffffff;
+   border-radius: 3px;
+   z-index: 2;
+   padding: 0px 4px 0px 4px;
+   word-break: break-all;
 }
 
 #chat-list .msg .othertalk .box .time
 {
-	float: left;
+   float: left;
 }
 
 
@@ -548,63 +553,63 @@ body {
 
 /* Global Button Styles */
 a.animated-button:link, a.animated-button:visited {
-	position: relative;
-	display: block;
+   position: relative;
+   display: block;
   align-items: center;
   justify-content: center;
   vertical-align: middle;
   text-indent: 5px;
-	margin: 30px auto 0;
-	padding: 14px 15px;
-	color: #FFF;
-	font-size:14px;
-	font-weight: bold;
-	text-align: center;
-	text-decoration: none;
-	text-transform: uppercase;
-	overflow: hidden;
-	letter-spacing: 6px;
-	border-radius: 0;
-	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
-	-webkit-transition: all 1s ease;
-	-moz-transition: all 1s ease;
-	-o-transition: all 1s ease;
-	transition: all 1s ease;
+   margin: 30px auto 0;
+   padding: 14px 15px;
+   color: #FFF;
+   font-size:14px;
+   font-weight: bold;
+   text-align: center;
+   text-decoration: none;
+   text-transform: uppercase;
+   overflow: hidden;
+   letter-spacing: 6px;
+   border-radius: 0;
+   text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+   -webkit-transition: all 1s ease;
+   -moz-transition: all 1s ease;
+   -o-transition: all 1s ease;
+   transition: all 1s ease;
 }
 a.animated-button:link:after, a.animated-button:visited:after {
-	content: "";
-	position: absolute;
-	height: 0%;
-	left: 50%;
-	top: 50%;
-	width: 50%;
-	z-index: -1;
-	-webkit-transition: all 0.75s ease 0s;
-	-moz-transition: all 0.75s ease 0s;
-	-o-transition: all 0.75s ease 0s;
-	transition: all 0.75s ease 0s;
+   content: "";
+   position: absolute;
+   height: 0%;
+   left: 50%;
+   top: 50%;
+   width: 50%;
+   z-index: -1;
+   -webkit-transition: all 0.75s ease 0s;
+   -moz-transition: all 0.75s ease 0s;
+   -o-transition: all 0.75s ease 0s;
+   transition: all 0.75s ease 0s;
 }
 a.animated-button:link:hover, a.animated-button:visited:hover {
-	color: #FFF;
-	text-shadow: none;
+   color: #FFF;
+   text-shadow: none;
 }
 a.animated-button:link:hover:after, a.animated-button:visited:hover:after {
-	height: 1000%;
+   height: 1000%;
   width: 1000%;
 }
 /* Victoria Buttons */
 
 a.animated-button.victoria-two {
-	border: 2px solid #FFF;
+   border: 2px solid #FFF;
   color:black;
 }
 a.animated-button.victoria-two:after {
-	background: #FFF;
+   background: #FFF;
   color:black;
-	-moz-transform: translateX(-50%) translateY(-50%) rotate(50deg);
-	-ms-transform: translateX(-50%) translateY(-50%) rotate(50deg);
-	-webkit-transform: translateX(-50%) translateY(-50%) rotate(50deg);
-	transform: translateX(-50%) translateY(-50%) rotate(50deg);
+   -moz-transform: translateX(-50%) translateY(-50%) rotate(50deg);
+   -ms-transform: translateX(-50%) translateY(-50%) rotate(50deg);
+   -webkit-transform: translateX(-50%) translateY(-50%) rotate(50deg);
+   transform: translateX(-50%) translateY(-50%) rotate(50deg);
 }
 
 
@@ -614,9 +619,9 @@ a.animated-button.victoria-two:after {
   align-items: center;
   justify-content: center;
   float: right;
-  position: fixed;
-  left:77%;
-  top:20%;
+  position: absolute;
+  right:0%;
+  top:0%;
 }
 
 .button1 {

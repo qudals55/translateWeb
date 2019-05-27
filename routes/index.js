@@ -6,11 +6,12 @@ const fs = require('fs');
 const Room = require('../schemas/room');
 const Chat = require('../schemas/chat');
 const User = require('../schemas/user');
+const Review = require('../schemas/review');
 const {
   Translate
 } = require('@google-cloud/translate');
 const projectId = 'propane-will-234405';
-const keyFilename = '/home/gongbyeongmin/speechkey.json';
+const keyFilename = '/Users/audrey/Desktop/gong/speech/speechkey_origin.json';
 
 
 
