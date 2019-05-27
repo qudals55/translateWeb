@@ -93,10 +93,11 @@ block content
   script(src='/socket.io/socket.io.js')
   script(src='/annyang.js')
   script.
-     var socket = io.connect('https://localhost:443/chat', {
+     var socket = io.connect('https://35.203.179.143:443/chat', {
      transports: [ 'websocket']
     });
     var user_lang = #{ findlang };
+    var getReviews = ['리뷰 쓰기', 'Write a review'];
     //안양 모듈 실행 setlanguage로 사용자 언어로 변환
       annyang.setLanguage(user_lang.lang);
       annyang.start({ autoRestart: true, continuous: false });
@@ -116,9 +117,23 @@ block content
           console.log("interim_transcript="+interim_transcript);
         }
       }
-      var getReviews = ['리뷰 쓰기', 'Write a review'];
       if (getReviews.includes(final_transcript)){
-        
+        var isInput = window.prompt("Please comment on our service!"+"");
+        if (isInput){
+        var reviews = user_lang.id + ' : ' + isInput;
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+        if (xhr.status === 200) {
+          isInput = '';
+          reviews = '';
+        } else {
+          console.error(xhr.responseText);
+        }
+        };
+        xhr.open('POST', '/room/chat');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({ reviews: reviews }));
+        }
       } else if (final_transcript) {
         var xhr = new XMLHttpRequest();
         xhr.onload = function () {
@@ -153,6 +168,7 @@ block content
     });
     //채팅방에 채팅이 올라온 경우
     socket.on('chat', function (data) {
+      
       var needchat = data.chat.split('=');
       var needindex = needchat.findIndex(function(e){
         return e== user_lang.lang;
@@ -242,6 +258,7 @@ block content
       }
     });
 
+    
 
     document.querySelector('#record-form').addEventListener('submit', function (e) {
       e.preventDefault();
@@ -268,20 +285,3 @@ block content
     a.download = fileName;
     a.dispatchEvent(new MouseEvent('click'));
     };
-
-
-    document.querySelector('#gif').addEventListener('change', function (e) {
-      var formData = new FormData();
-      var xhr = new XMLHttpRequest();
-      console.log(e.target.files);
-      formData.append('gif', e.target.files[0]);
-      xhr.onload = function () {
-        if (xhr.status === 200) {
-          e.target.file = null;
-        } else {
-          console.error(xhr.responseText);
-        }
-      };
-      xhr.open('POST', '/room/#{room._id}/gif');
-      xhr.send(formData);
-    });

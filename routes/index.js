@@ -6,12 +6,12 @@ const fs = require('fs');
 const Room = require('../schemas/room');
 const Chat = require('../schemas/chat');
 const User = require('../schemas/user');
-const Review = require('../schemas/review');
+const Review = require('../schemas/review')
 const {
   Translate
 } = require('@google-cloud/translate');
 const projectId = 'propane-will-234405';
-const keyFilename = '/Users/audrey/Desktop/gong/speech/speechkey_origin.json';
+const keyFilename =  '/home/gongbyeongmin/speechkey.json';
 
 
 
@@ -22,8 +22,11 @@ const router = express.Router();
 // 초기 로그인 화면
 router.get('/', async (req, res, next) => {
   try {
+    const reviews = await Review.find({}).sort('createdAt');
+    console.log(reviews);
     res.render('login', {
       title: '로그인',
+      reviews: reviews,
       error: req.flash('loginError')
     });
     
@@ -307,6 +310,12 @@ let translations = async function processtrans(allLangs, text) {
 };
 
 
+router.post('/room/chat', async (req, res, next) =>{
+  const review = new Review({comments: req.body.reviews});
+  console.log(review);
+  await review.save();
+  res.send('ok');
+});
 
 
 

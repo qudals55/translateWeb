@@ -109,39 +109,12 @@ html
                       div(class="text")
             ul
               li 
-                a(href="#box-three")
-                  label(for="modal3" class="button") Review
-                  input(type="checkbox" id="modal3" class="hidden")
-                  div(class="box_modal3" style="opacity:1; background-color: #E2E2E2")
-                    label(for="modal3" class="closer") x
-                    div(class="text")
-                      h5 Write a review
-                      br
-                      table
-                        tbody 
-                          tr
-                            td(style='font-weight: bolder;') Jack&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            td I am very satisfied with the service. I would like to recommend it to other people !!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          
-                            td 2019-05-01&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          tr  
-                            td(style='font-weight: bolder;') 김철수&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            td 서비스를 사용하는데 있어서 굉장히 만족합니다. 다른 사람들에게 추천해주고 싶습니다!!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            td 2019-05-02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          tr  
-                            td(style='font-weight: bolder;') 香川真司&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            td サービスを使用する上で非常に満足しています。他の人にお勧めしてくれたいと思います！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            td 2019-05-02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          tr
-                            td(style='font-weight: bolder;') Thomas Müller &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            td Ich bin sehr zufrieden mit dem Service. Ich würde es gerne weiterempfehlen !!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            td 2019-05-02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          tr
-                            td(style='font-weight: bolder;') منصور &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            td أنا راض جدا عن الخدمة. أود أن أوصي به لأشخاص آخرين !!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            td 2019-05-02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      div
-                        br
-                        input#chat(name='chat' class="leftlayout" style="height:7vh; width:850px; font-size:20px;" placeholder="Type your Message")
-                        button(class="rightlayout") submit    
+                label(for="modal3" class="button") Review
+                input(type="checkbox" id="modal3" class="hidden")
+                div(class="box_modal3" style="opacity:1; background-color: #E2E2E2")
+                  label(for="modal3" class="closer") x
+                  div(class="text")
+                  for review in reviews
+                    div= review.comments
             //- h4.notice 
   body
