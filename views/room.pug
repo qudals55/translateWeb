@@ -14,7 +14,9 @@ html
             input#PassWord(name='password' type='password' placeholder='select input password')
           div 
             h5 define enter people   
-              input#Max(name='max' type='number' placeholder='minimum 2' min='2' max='10' value='10' size='3')       
+              input#Max(name='max' type='number' placeholder='Min 2' min='2' max='10' value='10' size='3')       
           br 
-          button#MakeRoomButton(type='submit') make room 
+          div(class="wrap")
+            form#record-form(action='/download' method='get')  
+              button(type='submit' class="button1") Make Room
   body
