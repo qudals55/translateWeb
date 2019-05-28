@@ -97,7 +97,7 @@ block content
      transports: [ 'websocket']
     });
     var user_lang = #{ findlang };
-    var getReviews = ['리뷰 쓰기', 'Write a review'];
+    var getReviews = ['리뷰 쓰기', 'write a review'];
     //안양 모듈 실행 setlanguage로 사용자 언어로 변환
       annyang.setLanguage(user_lang.lang);
       annyang.start({ autoRestart: true, continuous: false });
@@ -257,9 +257,7 @@ block content
         xhr.send(JSON.stringify({ chat: this.chat.value }));
       }
     });
-
     
-
     document.querySelector('#record-form').addEventListener('submit', function (e) {
       e.preventDefault();
       var xhr = new XMLHttpRequest();
@@ -278,7 +276,6 @@ block content
         xhr.open('GET', '/download/#{room._id}');
         xhr.send();
     });
-
     function saveBlob(blob, fileName) {
     var a = document.createElement('a');
     a.href = window.URL.createObjectURL(blob);
