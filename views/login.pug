@@ -7,114 +7,170 @@ html
   //- section#Wrapper(style='margin-left: auto; margin-right: auto; height: 33%')
   //- div(id= 'imageInput')
   //-   img(src='/image/loginPart/white.png')
-  div(id='wapper')
-    video(autoplay muted loop id="myVideo")
-      source(src="/loginPart/Videochat.mp4" type="video/mp4")
-    //- video(autoplay muted loop id="myVideo")
-    //-   source(src="Videochat2.mp4" type="video/mp4")
-    div
-      h1 Language Translate Easily
-    div
-      section#Wrapper(style='margin-left: auto; margin-right: auto;')
-        .wrapper.fadeInDown
-          //- #formContent
-          // Tabs Titles
-          h2.active  LOGIN 
-          // Icon
-          // Login Form
-          form(action='/main', method='post')
-            input#login.fadeIn.second(type='text', name='userid', placeholder='NickName')
-            div
-              select(name='lang', placeholder='language')
-                // 언어 추가
-                option(value='', selected='selected') language
-                option(type='radio', value='ko', checked='checked', name='lang') 한국어
-                option(type='radio', value='en', name='lang') English
-                option(type='radio', value='ja', name='lang') 日本
-                option(type='radio', value='af', name='lang') Afrika
-                option(type='radio', value='eu', name='lang') Euskal
-                option(type='radio', value='bg', name='lang') български
-                option(type='radio', value='ca', name='lang') Català
-                option(type='radio', value='ar', name='lang') عربى
-                option(type='radio', value='cs', name='lang') čeština
-                option(type='radio', value='nl', name='lang') Nederlands
-                option(type='radio', value='fi', name='lang') Suomalainen
-                option(type='radio', value='fr', name='lang') français
-                option(type='radio', value='ka', name='lang') ქართული
-                option(type='radio', value='de', name='lang') Deutsche
-                option(type='radio', value='el', name='lang') Ελληνικά
-                option(type='radio', value='hu', name='lang') Magyar
-                option(type='radio', value='is', name='lang') Íslensku
-                option(type='radio', value='id', name='lang') bahasa Indonesia
-                option(type='radio', value='la', name='lang') Latine
-                option(type='radio', value='zh-CN', name='lang') 中文
-                option(type='radio', value='zh-TW', name='lang') 中國傳統的
-                option(type='radio', value='no', name='lang') norsk
-                option(type='radio', value='pl', name='lang') Polskie
-                option(type='radio', value='pt', name='lang') Português
-                option(type='radio', value='ru', name='lang') русский
-                option(type='radio', value='sr', name='lang') Српски
-                option(type='radio', value='sk', name='lang') slovenský
-                option(type='radio', value='ro', name='lang') Română
-                option(type='radio', value='es', name='lang') Español
-                option(type='radio', value='sv', name='lang') svenska
-                option(type='radio', value='tr', name='lang') Türk
-
-
-            br
-            button#LoginButton(type='submit') login
-            if loginError
-                .error-message= loginError
-      aside
-        .wrapper2.fadeInDown
-          h3.notice NOTICE
-          div(class="wrap")
-            ul
-              li
-                h4 Support Language
-                ul
-                  li
-                    label(for="modal1" class="button") Show language list
-                    input(type="checkbox" id="modal1" class="hidden")
-                    div(class="box_modal1")
-                      label(for="modal1" class="closer") x
-                      div(class="text")
-                        p 한국어, English, 日本, Afrika, Euskal, български, Català, عربى, čeština, Nederlands, Suomalainen, français, ქართული, Deutsche, Ελληνικά, Magyar, Íslensku, bahasa Indonesia, Latine, 中文, 中國傳統的, norsk, Polskie, Português, русский, Српски, slovenský, Română, Español, svenska, Türk
-              li
-                h4 How To Use
-                ul
-                  li
-                    label(for="modal2" class="button") How to Login
-                    input(type="checkbox" id="modal2" class="hidden")
-                    div(class="box_modal2" style="opacity:1")
-                      label(for="modal2" class="closer") x
-                      div(class="text")
-                  li
-                    label(for="modal5" class="button") How to enter room
-                    input(type="checkbox" id="modal5" class="hidden")
-                    div(class="box_modal5" style="opacity:1")
-                      label(for="modal5" class="closer") x
-                      div(class="text")
-                  li
-                    label(for="modal2" class="button") How to make room
-                    input(type="checkbox" id="modal2" class="hidden")
-                    div(class="box_modal2" style="opacity:1")
-                      label(for="modal2" class="closer") x
-                      div(class="text")
-                  li
-                    label(for="modal4" class="button") How to chat
-                    input(type="checkbox" id="modal4" class="hidden")
-                    div(class="box_modal4" style="opacity:1")
-                      label(for="modal4" class="closer") x
-                      div(class="text")
-            ul
-              li 
-                label(for="modal3" class="button") Review
-                input(type="checkbox" id="modal3" class="hidden")
-                div(class="box_modal3" style="opacity:1; background-color: #E2E2E2")
-                  label(for="modal3" class="closer") x
-                  div(class="text")
-                  for review in reviews
-                    div= review.comments
-            //- h4.notice 
   body
+    div(id='wapper')
+      video(autoplay muted loop id="myVideo")
+        source(src="/loginPart/Videochat.mp4" type="video/mp4")
+      div
+        h1 L &nbsp&nbsp&nbsp T &nbsp&nbsp&nbsp E
+        h5.title language translate easily
+      div
+        section#Wrapper(style='margin-left: auto; margin-right: auto;')
+          .wrapper.fadeInDown
+            //- #formContent
+            // Tabs Titles
+            h2.active  LOGIN 
+            // Icon
+            // Login Form
+            form(action='/main', method='post')
+              input#login.fadeIn.second(type='text', name='userid', placeholder='NickName')
+              div
+                select(name='lang', placeholder='language')
+                  // 언어 추가
+                  option(value='', selected='selected') language
+                  option(type='radio', value='ko', checked='checked', name='lang') 한국어
+                  option(type='radio', value='en', name='lang') English
+                  option(type='radio', value='ja', name='lang') 日本
+                  option(type='radio', value='af', name='lang') Afrika
+                  option(type='radio', value='eu', name='lang') Euskal
+                  option(type='radio', value='bg', name='lang') български
+                  option(type='radio', value='ca', name='lang') Català
+                  option(type='radio', value='ar', name='lang') عربى
+                  option(type='radio', value='cs', name='lang') čeština
+                  option(type='radio', value='nl', name='lang') Nederlands
+                  option(type='radio', value='fi', name='lang') Suomalainen
+                  option(type='radio', value='fr', name='lang') français
+                  option(type='radio', value='ka', name='lang') ქართული
+                  option(type='radio', value='de', name='lang') Deutsche
+                  option(type='radio', value='el', name='lang') Ελληνικά
+                  option(type='radio', value='hu', name='lang') Magyar
+                  option(type='radio', value='is', name='lang') Íslensku
+                  option(type='radio', value='id', name='lang') bahasa Indonesia
+                  option(type='radio', value='la', name='lang') Latine
+                  option(type='radio', value='zh-CN', name='lang') 中文
+                  option(type='radio', value='zh-TW', name='lang') 中國傳統的
+                  option(type='radio', value='no', name='lang') norsk
+                  option(type='radio', value='pl', name='lang') Polskie
+                  option(type='radio', value='pt', name='lang') Português
+                  option(type='radio', value='ru', name='lang') русский
+                  option(type='radio', value='sr', name='lang') Српски
+                  option(type='radio', value='sk', name='lang') slovenský
+                  option(type='radio', value='ro', name='lang') Română
+                  option(type='radio', value='es', name='lang') Español
+                  option(type='radio', value='sv', name='lang') svenska
+                  option(type='radio', value='tr', name='lang') Türk
+
+
+              br
+              button#LoginButton(type='submit' style="font-weight:bold;") login
+              if loginError
+                  .error-message= loginError
+        aside
+          .wrapper2.fadeInDown
+            h3.notice NOTICE
+            div(class="wrap")
+              ul
+                li
+                  h4 Support Language
+                  ul
+                    li
+                      label(for="modal1" class="button") Show language list
+                      input(type="checkbox" id="modal1" class="hidden")
+                      div(class="box_modal1")
+                        label(for="modal1" class="closer") x
+                        div(class="text")
+                          table
+                            th 
+                            th 
+                            th 
+                            th
+                            th 
+                            th
+                            tr
+                              td 한국어
+                              td English
+                              td 日本
+                              td Afrika
+                              td Euskal
+                              td
+                            tr
+                              td български
+                              td Català
+                              td عربى 
+                              td čeština 
+                              td Nederlands &nbsp&nbsp&nbsp&nbsp&nbsp 
+                              td
+                            tr
+                              td Suomalainen &nbsp&nbsp&nbsp&nbsp&nbsp
+                              td français
+                              td ქართული 
+                              td Deutsche &nbsp&nbsp&nbsp&nbsp&nbsp 
+                              td Ελληνικά 
+                          
+                            tr
+                              td Íslensku 
+                              td nbspbahasa &nbsp&nbsp&nbsp&nbsp&nbsp 
+                              td Indonesia 
+                              td Latine 
+                              td 中文 
+                              
+                            tr
+                              td norsk 
+                              td Polskie
+                              td Português &nbsp&nbsp&nbsp&nbsp&nbsp
+                              td русский 
+                              td Српски
+                              td
+                            tr
+                              td slovenský 
+                              td Română 
+                              td Español 
+                              td svenska 
+                              td Türk
+                              td
+                            tr
+                              td Magyar
+                              td 中國傳統的
+
+                          //- h6 norsk &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Polskie &nbsp&nbsp&nbsp&nbsp&nbsp Português русский Српски
+                          //- h6 slovenský &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Română &nbsp&nbsp Español svenska Türk
+                          //- h6 a &nbspb
+                li
+                  h4 How To Use
+                  ul
+                    li
+                      label(for="modal2" class="button") How to Login
+                      input(type="checkbox" id="modal2" class="hidden")
+                      div(class="box_modal2" style="opacity:1")
+                        label(for="modal2" class="closer") x
+                        div(class="text")
+                    li
+                      label(for="modal5" class="button") How to enter room
+                      input(type="checkbox" id="modal5" class="hidden")
+                      div(class="box_modal5" style="opacity:1")
+                        label(for="modal5" class="closer") x
+                        div(class="text")
+                    li
+                      label(for="modal2" class="button") How to make room
+                      input(type="checkbox" id="modal2" class="hidden")
+                      div(class="box_modal2" style="opacity:1")
+                        label(for="modal2" class="closer") x
+                        div(class="text")
+                    li
+                      label(for="modal4" class="button") How to chat
+                      input(type="checkbox" id="modal4" class="hidden")
+                      div(class="box_modal4" style="opacity:1")
+                        label(for="modal4" class="closer") x
+                        div(class="text")
+              ul
+                li 
+                  label(for="modal3" class="button") Review
+                  input(type="checkbox" id="modal3" class="hidden")
+                  div(class="box_modal3" style="opacity:1; background-color: #E2E2E2")
+                    label(for="modal3" class="closer") x
+                    div(class="text")
+                    for review in reviews
+                      div.review= review.id + ':  ' + review.comments
+                      //- br
+              //- h4.notice 
+  //- body

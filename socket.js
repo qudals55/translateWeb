@@ -88,6 +88,12 @@ module.exports = (server, app, sessionMiddleware) => {
               console.error(error);
             });
         } else {
+          io.of('/room').emit('leaveRoom', {
+            roomId: roomId,
+            user: user,
+            count: clients.length,
+          });
+
           socket.to(roomId).emit('exit', {
             user: 'system',
             chat: `${user.id}님이 퇴장하셨습니다.`,

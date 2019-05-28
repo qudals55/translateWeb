@@ -1,10 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display|Poppins&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Lato:100');
-
+@import url('https://fonts.googleapis.com/css?family=Courgette&display=swap');
 /* BASIC */
 
 body {
-  background-color: e5dee2;
+  /* background: #7F7FD5;
+  background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+  background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5); */
+  background: rgba(0,0,0,0.8); 
+  background-size: cover;
+  z-index: -2;
   /* background-image:url('/main3.jpg') ; */
   font-family: 'Poppins', sans-serif;
   background-size: cover;
@@ -19,20 +24,20 @@ body {
 }
 a {
   font-family: 'Playfair Display', serif;
-  color: black;
+  color: white;
   display:inline-block;
   text-decoration: none;
   font-weight: 400;
 }
 h1 {
   text-align: center;
-  font-family: 'Lato', sans-serif;
-  font-weight: bolder;
+  /* font-family: 'Lato', sans-serif; */
+  font-weight: 900;
   font-size:56px;
   margin-top: 20px;
   margin-bottom: 0px;
   margin-left: 0px;
-  color: black; 
+  color: white; 
 }
 h2 {
   text-align: center;
@@ -52,9 +57,41 @@ h3 {
   /* text-transform: uppercase; */
   display:inline-block;
   margin: 1px 8px 10px 8px;
-  color: black;
+  color: white;
 }
 
+h4{
+  font-family: 'Playfair Display', serif;
+  margin-bottom: -2px;
+  text-align:left;
+  font-size:20px;
+  color:white;
+}
+h5{
+  font-size: 40px;
+  color: white;
+  /* font-family: 'Lato', sans-serif; */
+  text-align:center;
+  margin-top: 0px;
+  margin-bottom:0px;
+}
+h6{
+  font-size: 20px;
+  margin-top:0px;
+  margin-bottom:0px;
+}
+h5.title{
+  margin-bottom:0px;
+  text-align: center;
+  border-top: 3px solid #999;
+  font-family: 'Courgette', cursive;
+  font-weight: 100;
+}
+div.review{
+  /* font-family: 'Playfair Display', serif; */
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+}
 /* STRUCTURE */
 div#wapper {
   position: absolute;
@@ -68,25 +105,10 @@ div#wapper {
   visibility:hidden;
 }
 
-h4{
-  font-family: 'Playfair Display', serif;
-  margin-bottom: -2px;
-  text-align:left;
-  font-size:20px;
-  color:black;
-}
-h5{
-  font-size: 40px;
-  color: black;
-  font-family: 'Lato', sans-serif;
-  text-align:center;
-  margin-top: 0px;
-  margin-bottom:0px;
-}
 label{
   text-align:left;
   font-size: 20px;
-  color:black;
+  color:white;
 }
 label:hover{
   font-size:22px;
@@ -123,9 +145,9 @@ section{
   padding: 20px;
 }
 .wrapper2{
-  margin-top: 100px;
+  margin-top: 50px;
   display: flex;
-  background-color: rgba( 255, 255, 255, 0.2 );
+  background-color: rgba( 255, 255, 255, 0.03 );
   flex-direction: column;
   width: 320px;
   min-height: 100%;
@@ -148,8 +170,8 @@ section{
 .box_modal1 {
   position:fixed;
   display:block;
-  width:300px;
-  height:150px;
+  width:800px;
+  height:250px;
   top:50%;
   left:50%;
   margin-top:-75px;
@@ -157,6 +179,7 @@ section{
   background:#d9e5e9;
   border:1px solid #386980;
   overflow:hidden;
+  border-radius: 10px 10px 10px 10px;
   /* 아래 부분은 애니메이션 효과를 위한 부분 */
   visibility: collapse;
   opacity: 0.6;
@@ -183,6 +206,7 @@ section{
   /* background:#d9e5e9; */
   border:1px solid #386980;
   overflow:hidden;
+  border-radius: 10px 10px 10px 10px;
   /* 아래 부분은 애니메이션 효과를 위한 부분 */
   visibility: collapse;
   opacity: 0.6;
@@ -208,6 +232,7 @@ section{
   /* background:#d9e5e9; */
   border:1px solid #386980;
   overflow:hidden;
+  border-radius: 10px 10px 10px 10px;
   /* 아래 부분은 애니메이션 효과를 위한 부분 */
   visibility: collapse;
   opacity: 0.6;
@@ -233,6 +258,7 @@ section{
   /* background:#d9e5e9; */
   border:1px solid #386980;
   overflow:hidden;
+  border-radius: 10px 10px 10px 10px;
   /* 아래 부분은 애니메이션 효과를 위한 부분 */
   visibility: collapse;
   opacity: 0.6;
@@ -257,7 +283,7 @@ section{
   background-image:url('/loginPart/chat.png');
   background-repeat: no-repeat;
   border:1px solid #386980;
-  overflow:hidden;
+  border-radius: 10px 10px 10px 10px;
   /* 아래 부분은 애니메이션 효과를 위한 부분 */
   visibility: collapse;
   opacity: 0.6;
@@ -282,6 +308,7 @@ section{
   background-color: #d9e5e9; 
   border:1px solid #386980;
   overflow:hidden;
+  border-radius: 10px 10px 10px 10px;
   /* 아래 부분은 애니메이션 효과를 위한 부분 */
   visibility: collapse;
   opacity: 0.6;
@@ -403,7 +430,9 @@ h2.inactive {
 }
 
 h2.active {
-  color: #0d0d0d;
+  margin-top:0px;
+  font-family: 'Poppins', sans-serif;
+  color: white;
   /* border-bottom: 2px solid #5fbae9; */
   text-align: center;
 
@@ -412,7 +441,8 @@ h2.active {
 h3.notice{
   /* font-size: 30px; */
   /* color: black; */
-  font-family: 'Playfair Display', serif;
+  /* font-family: 'Playfair Display', serif; */
+  font-family: 'Poppins', sans-serif;
   text-align: center;
 }
 h4.language{
@@ -427,16 +457,10 @@ h4.language{
   min-height: 300%;
   width: auto;
   height: auto;
-  z-index: -1000;
-  overflow: hidden;
-  opacity: 0.5;
-  /* position: absolute;
-  opacity: 0.5;
   z-index: -1;
-  width: 1600px;
-  height:auto;
-  overflow: hidden; */
-
+  overflow: hidden;
+  /* background-color:rgba(0,0,0,0.3); */
+  opacity: 0.5;
 }
 
 /* FORM TYPOGRAPHY*/
@@ -450,8 +474,11 @@ button[type=submit]{
   display: inline-block;
   text-transform: uppercase;
   font-size: 13px;
-  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  /* -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4); */
+  /* rgb(217, 229, 233) */
+  -webkit-box-shadow: 0 10px 30px 0 rgba(217,229,233,0.2);
+  box-shadow: 0 10px 30px 0 rgba(217,229,233,0.2);
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
   margin: 5px 20px 20px 20px;
@@ -463,7 +490,7 @@ button[type=submit]{
 }
 
 input[type=button], input[type=submit]  {
-  background-color: #56baed;
+  background-color: #d9e5e9;
   border: none;
   color: white;
   padding: 15px 80px;
@@ -485,7 +512,7 @@ input[type=button], input[type=submit]  {
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-  background-color: #39ace7;
+  background-color: #d9e5e9;
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
@@ -525,14 +552,14 @@ select[name=list]:placeholder {
 }
 option[value='']{
   text-align: center;
-  font-family: 'Lato', sans-serif;
-  font-weight: bolder;
+  /* font-family: 'Lato', sans-serif; */
+  /* font-weight: bolder; */
   
 }
 select[name=lang]{
   background-color: #f6f6f6;
-  font-family: 'Lato', sans-serif;
-  font-weight: bolder;
+  /* font-family: 'Lato', sans-serif; */
+  /* font-weight: bolder; */
   
   /* border: none; */
   color: #0d0d0d;
@@ -646,28 +673,10 @@ input[type=text]:placeholder {
   animation-duration:1s;
 }
 
-.fadeIn.first {
-  -webkit-animation-delay: 0.4s;
-  -moz-animation-delay: 0.4s;
-  animation-delay: 0.4s;
-}
-
 .fadeIn.second {
   -webkit-animation-delay: 0.6s;
   -moz-animation-delay: 0.6s;
   animation-delay: 0.6s;
-}
-
-.fadeIn.third {
-  -webkit-animation-delay: 0.8s;
-  -moz-animation-delay: 0.8s;
-  animation-delay: 0.8s;
-}
-
-.fadeIn.fourth {
-  -webkit-animation-delay: 1s;
-  -moz-animation-delay: 1s;
-  animation-delay: 1s;
 }
 
 /* Simple CSS3 Fade-in Animation */
@@ -677,7 +686,7 @@ input[type=text]:placeholder {
   bottom: -10px;
   width: 0;
   height: 2px;
-  background-color: #56baed;
+  background-color: #d9e5e9;
   content: "";
   transition: width 0.2s;
 }
@@ -728,6 +737,11 @@ td.ID{
    bottom:3px;
    border-top-right-radius: 20px; border-bottom-right-radius: 20px;
    height:57px; width:50px;
+}
+
+reviewlogin{
+  font-family: 'Playfair Display', serif;
+  
 }
 /* @keyframes change {
   0% {

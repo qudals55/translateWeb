@@ -12,7 +12,13 @@ block content
       div.room-list
         each room, idx in rooms
           if idx%3 == 0
-            label(href = "#layer2" for = room.title).room-btn
+            label(for = room.title, data-id=room._id).room-btn
+              div.room-conts
+                div.room-title
+                  div.room-name= room.title
+                div.room-body
+                  div.room-max= room.max
+                  div.room-pri= room.password ? 'Private Room' : 'Public Room'
               input(type="checkbox" id = room.title, style = "display : none").openBtn
               div.dim-layer
                 div.dimBg
@@ -36,15 +42,7 @@ block content
                       div.max-count= rooms[idx+2] + "명"
                       div.btn-r
                         button(data-password=password data-id=room._id).join-btn Enter
-                        
-              div.room-conts
-                div.room-title
-                  div.room-name= room.title
-                div.room-body
-                  div.room-max= room.max
-                  div.room-pri(isPrivate = room.password)= room.password ? 'Private Room' : 'Public Room'
-          
-          
+
       p If you want to make room, Click bottom button!
         br
         a(href='/room')
@@ -56,38 +54,183 @@ script.
     transports: [ 'websocket']
   });
   socket.on('newRoom', function (data) {
-    var tr = document.createElement('tr');
-    var td = document.createElement('td');
-    td.textContent = data.title;
-    tr.appendChild(td);
-    td = document.createElement('td');
-    td.textContent = data.password ? 'Private Room' : 'Public Room';
-    tr.appendChild(td);
-    td = document.createElement('td');
-    td.textContent = data.max;
-    tr.appendChild(td);
-    td = document.createElement('td');
-    td[0].style.color = data.owner;
-    td.textContent = data.owner;
-    tr.appendChild(td);
-    td = document.createElement('td');
-    var button = document.createElement('button');
-    button.textContent = 'Enter';
-    button.dataset.password = data.password ? 'true' : 'false';
-    button.dataset.id = data._id;
-    button.addEventListener('click', addBtnEvent);
-    td.appendChild(button);
-    tr.appendChild(td);
-    tr.dataset.id = data._id;
-    document.querySelector('table tbody').appendChild(tr);
+    var label = document.createElement('label');
+    label.setAttribute('for', data.title);
+    label.classList.add('room-btn');
+
+    var input = document.createElement('input');
+    input.type = "checkbox";
+    input.id = data.title;
+    input.style = "display : none";
+    input.classList.add('openBtn');
+
+    label.appendChild(input);
+
+    var div = document.createElement('div');
+    div.classList.add('dim-layer');
+
+    label.appendChild(div);
+
+    var subdiv = document.createElement('div');
+    subdiv.classList.add('dimBg');
+
+    div.appendChild(subdiv);
+
+    subdiv = document.createElement('div');
+    subdiv.classList.add('pop-layer');
+    subdiv.classList.add('fadeInDown');
+
+    var subsubdiv = document.createElement('div');
+    subsubdiv.classList.add('pop-container');
+
+    var subsubsubdiv = document.createElement('div');
+    subsubsubdiv.classList.add('pop-conts');
+
+    var headerDiv = document.createElement('div');
+    headerDiv.classList.add('content-header');
+
+    var headerP = document.createElement('p');
+    headerP.classList.add('header-text');
+    headerP.textContent = data.title;
+
+    headerDiv.appendChild(headerP);
+
+    subsubsubdiv.appendChild(headerDiv);
+
+    var bodyDiv = document.createElement('div');
+    bodyDiv.classList.add('content-body');
+
+    var bodyP = document.createElement('p');
+    bodyP.classList.add('owner-name');
+    bodyP.style = 'text-align : left; font-size : 14px';
+    bodyP.textContent = '방장';
+
+    bodyDiv.appendChild(bodyP);
+
+    bodyP = document.createElement('p');
+    bodyP.classList.add('owner-name');
+    bodyP.textContent = data.owner;
+
+    bodyDiv.appendChild(bodyP);
+
+    bodyP = document.createElement('p');
+    bodyP.classList.add('max-count');
+    bodyP.style = 'text-align : left; font-size : 14px';
+    bodyP.textContent = '최대인원';
+
+    bodyDiv.appendChild(bodyP);
+
+    bodyP = document.createElement('p');
+    bodyP.classList.add('max-count');
+    bodyP.textContent = data.max + '명';
+
+    bodyDiv.appendChild(bodyP);
+
+    subsubsubdiv.appendChild(bodyDiv);
+
+    input = document.createElement('input');
+    input.classList.add('list-Btn');
+    input.id = data.id;
+    input.type = 'checkbox';
+    input.style = 'display : none';
+
+    subsubsubdiv.appendChild(input);
+
+    var subLabel = document.createElement('label');
+    subLabel.classList.add('list-Btn');
+    subLabel.for = data.id;
+    subLabel.style = 'text-align : left; font-size : 14px';
+    subLabel.classList.add('max-count');
+    subLabel.textContent = '현재 참가자';
+
+    subsubsubdiv.appendChild(subLabel);
+
+    var ul = document.createElement('ul');
+    ul.classList.add('user-list');
+    subsubsubdiv.appendChild(ul);
+
+    var countDiv = document.createElement('div');
+    countDiv.classList.add('max-count');
+
+    countDiv.textContent = '1명';
+
+    subsubsubdiv.appendChild(countDiv);
+
+    var btnDiv = document.createElement('div');
+    btnDiv.classList.add('btn-r');
+    var btn = document.createElement('button');
+
+    btn.dataset.password = data.password ? 'true' : 'false';
+    btn.dataset.id = data._id;
+    btn.classList.add('join-btn');
+    btn.textContent = 'Enter';
+    btn.addEventListener('click', addBtnEvent);
+
+    btnDiv.appendChild(btn);
+    
+    subsubsubdiv.appendChild(btnDiv);
+    subsubdiv.appendChild(subsubsubdiv);
+    subdiv.appendChild(subsubdiv);
+    div.appendChild(subdiv);
+
+    label.appendChild(div);
+
+    div = document.createElement('div');
+    div.classList.add('room-conts');
+    subdiv = document.createElement('div');
+    subdiv.classList.add('room-title');
+    subsubdiv = document.createElement('div');
+    subsubdiv.classList.add('room-name');
+    subsubdiv.textContent = data.title;
+
+    subdiv.appendChild(subsubdiv);
+
+    div.appendChild(subdiv);
+
+    subdiv = document.createElement('div');
+    subdiv.classList.add('room-body');
+    subsubdiv = document.createElement('div');
+    subsubdiv.classList.add('room-max');
+    subsubdiv.textContent = data.max;
+
+    subdiv.appendChild(subsubdiv);
+
+    subsubdiv = document.createElement('div');
+    subsubdiv.classList.add('room-pri');
+    subsubdiv.isPrivate = data.password;
+    subsubdiv.textContent = data.password ? 'Private Room' : 'Public Room';
+
+    subdiv.appendChild(subsubdiv);
+
+    div.appendChild(subdiv);
+
+    label.appendChild(div);
+    label.dataset.id = data._id;
+    document.querySelector('.room-list').appendChild(label);
   });
   socket.on('removeRoom', function (data) {
-    document.querySelectorAll('tbody tr').forEach(function (tr) {
-      if (tr.dataset.id === data) {
-        tr.parentNode.removeChild(tr);
+    document.querySelectorAll('.room-list label').forEach(function (label) {
+      if (label.dataset.id === data) {
+        label.parentNode.removeChild(label);
       }
     });
   });
+  socket.on('joinRoom', function (data) {
+     document.querySelectorAll('.room-list label').forEach(function (label) {
+     if (label.dataset.id === data.roomId) {
+        console.log(data);
+      }
+     })
+  });
+
+   socket.on('leaveRoom', function (data) {
+     document.querySelectorAll('.room-list label').forEach(function (label) {
+     if (label.dataset.id === data.roomId) {
+        console.log(data);
+      }
+     })
+  });
+
   function addBtnEvent(e) {
     if (e.target.dataset.password === 'true') {
       const password = prompt('Input Password');

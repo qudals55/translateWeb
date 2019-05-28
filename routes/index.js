@@ -23,7 +23,6 @@ const router = express.Router();
 router.get('/', async (req, res, next) => {
   try {
     const reviews = await Review.find({}).sort('createdAt');
-    console.log(reviews);
     res.render('login', {
       title: '로그인',
       reviews: reviews,
@@ -106,6 +105,7 @@ router.post('/room', async (req, res, next) => {
       title: req.body.title,
       max: req.body.max,
       owner: user.id,
+      ownerlang: user.lang,
       password: req.body.password,
     });
     const newRoom = await room.save();
@@ -129,7 +129,7 @@ router.get('/room/:id', async (req, res, next) => {
     const room = await Room.findOne({
       _id: req.params.id
     });
-
+  
     const io = req.app.get('io');
     if (!room) {
       req.flash('roomError', '존재하지 않는 방입니다.');
@@ -197,7 +197,13 @@ router.get('/room/:id', async (req, res, next) => {
 
       getDb.push(chat);
     };
-
+    if(rooms && rooms[req.params.id] && rooms[req.params.id].length){
+      io.of('/room').emit('joinRoom', {
+        roomId: req.params.id,
+        user: user,
+        count:  rooms[req.params.id].length+1,
+      });
+    };
     return res.render('chat', {
       findlang: user,
       room,
@@ -311,8 +317,8 @@ let translations = async function processtrans(allLangs, text) {
 
 
 router.post('/room/chat', async (req, res, next) =>{
-  const review = new Review({comments: req.body.reviews});
-  console.log(review);
+  const restore = req.body.reviews.split(':');
+  const review = new Review({id: restore[0],comments: restore[1]});
   await review.save();
   res.send('ok');
 });

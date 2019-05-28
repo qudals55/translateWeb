@@ -1,20 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 @import url('https://fonts.googleapis.com/css?family=Lato:100');
 body {
-    /*
-    text-align: center;
-    */
-
-    /* background :  #56baed; */
-      /* background-image:url('/chaback2.png') ; */
       background: #7F7FD5;
        background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
        background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
       background-size: cover;
       font-family:  "Poppins", sans-serif;
       overflow:hidden;
-    /* min-width: 1400px;
-    min-height: 700px; */
 
        text-align: center;
        color: #FFF;
@@ -100,7 +92,6 @@ body {
     min-height: 29px;
     float: left;
     word-wrap:break-word;
-    /* top:24px; */
     }
     .other{
       width: 100%;
@@ -110,7 +101,6 @@ body {
    label[for='gif'], #chat, #chat-form [type='submit'] {
        display: inline-block;
        height: 30px;
-       /* vertical-align: top; */
    }
    label[for='gif'] { cursor: pointer; padding: 5px; }
    #gif { display: none; }
@@ -136,10 +126,8 @@ body {
        float: left;
    }
    section {
-     /* 똑같이 맞출땐 vh */
      float: left;
        border-radius: 20px;
-       /* background-color: white; */
 
        background-color: rgba( 255, 255, 255, 0.3 );
        width: 70%;
@@ -149,12 +137,10 @@ body {
       display: inline-block;
       position: relative;
       float:left;
-       /* background-color: #E2E2E2; */
        background-color: rgba( 255, 255, 255, 0.3 );
        border-radius: 20px;
        height: 67vh;
        width: 97%;
-       /* overflow: auto; */
    }
 
    .bfaside {
@@ -163,7 +149,6 @@ body {
       left:1%;
       width: 30%;
       height: 80vh;
-       /* overflow: auto; */
    }
    footer {
       float: left;
@@ -195,7 +180,6 @@ body {
        border-top-left-radius: 20px;  border-bottom-left-radius: 20px;
       font-size:20px;
       background-color: rgba( 255, 255, 255, 0.3 );
-      /* border: 1px solid #fff; */
       border-color: transparent;
       border: none;
       position: relative;
@@ -203,8 +187,6 @@ body {
 
     .rightlayout
     {
-       /* background-color: #ffec42; */
-       /* color: #FFF; */
        color: #000;
        margin: 0px 0px 0px 0px;
        padding: 0px 0px 0px 0px;
@@ -215,8 +197,6 @@ body {
        display: table-cell;
         border-top-right-radius: 20px; border-bottom-right-radius: 20px;
        background-color: rgba( 255, 255, 255, 0.3 );
-       /* background-color: transparent !important; */
-       /* border: 1px solid #fff; */
         font-family: "Poppins" , sans-serif;
         border-color: transparent;
         border-top-color :none;
@@ -229,8 +209,6 @@ body {
 
     .btnstyle
     {
-       /* background-color: #ffec42; */
-       /* color: #FFF; */
        color: #000;
        margin: 0px 0px 0px 0px;
        padding: 0px 0px 0px 0px;
@@ -240,8 +218,6 @@ body {
        cursor: pointer;
        vertical-align: middle;
        display: table-cell;
-       /* background-color: transparent !important; */
-       /* border: 1px solid #fff; */
         font-family: "Poppins" , sans-serif;
         letter-spacing: 0.1em;
     }
@@ -276,13 +252,6 @@ body {
       border: 14px solid transparent;
       border-left-color: #eee;
   }
-/*
-   .size
-    {
-          position:relative;
-    } */
-
-
   /* 채팅 디자인   */
   .clear
  {
@@ -367,7 +336,6 @@ body {
      height: 22px;
      background: url(/chat_balloon_white.left.png) no-repeat;
      z-index: 1;
-    /* top:24px; */
   }
 
   .other .b
@@ -441,7 +409,6 @@ body {
 
 #chat-list .msg
 {
-   /* height: calc(100% - 72px); */
    overflow-y: scroll;
 
    font-size: 12px;
@@ -636,7 +603,6 @@ a.animated-button.victoria-two:after {
   background-color:  transparent;
   border: none;
   border-radius: 45px;
-  /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;

@@ -16,6 +16,10 @@ const roomSchema = new Schema({
     type: String,
     required: true,
   },
+  ownerlang: {
+    type: String,
+    required: true,
+  },
   password: String,
   createdAt: {
     type: Date,
