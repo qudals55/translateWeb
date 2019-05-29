@@ -28,7 +28,7 @@ router.get('/', async (req, res, next) => {
       reviews: reviews,
       error: req.flash('loginError')
     });
-    
+
   } catch (error) {
     console.error(error);
     next(error);
@@ -38,13 +38,25 @@ router.get('/', async (req, res, next) => {
 // 로그인 페이지에서 작성한 로그인 정보 전송
 router.post('/main', async (req, res, next) => {
   try {
-    if (!req.body.userid) {
-      req.flash('loginError', '아이디를 입력해주세요.');
-      return res.redirect('/');
-    } else if (!req.body.lang){
-      req.flash('loginError', '언어를 입력해주세요.');
-      return res.redirect('/');
-    };
+    if (!req.body.userid || !req.body.lang) {
+      const reviews = await Review.find({}).sort('createdAt');
+      if (!req.body.userid) {
+        req.flash('loginError', '닉네임을 입력해주세요.');
+        res.render('login', {
+          title: '로그인',
+          reviews: reviews,
+          error: req.flash('loginError'),
+        });
+      } else if (!req.body.lang) {
+        req.flash('langError', '언어를 입력해주세요.');
+        res.render('login', {
+          title: '로그인',
+          reviews: reviews,
+          error: req.flash('langError'),
+        });
+      };
+      return;
+    }
 
 
     const user = new User({
@@ -67,7 +79,7 @@ router.get('/main', async (req, res, next) => {
   try {
     let getRooms = [];
     const rooms = await Room.find({});
-    for (room of rooms){ 
+    for (room of rooms) {
       getRooms.push(room);
       const users = await User.find({
         room: room._id
@@ -89,14 +101,20 @@ router.get('/main', async (req, res, next) => {
 
 // 방 생성 페이지 접속
 router.get('/room', (req, res) => {
-  res.render('room', {
-    title: 'GIF 채팅방 생성'
-  });
+  res.render('room', {});
 });
 
 // 방 생성 시
 router.post('/room', async (req, res, next) => {
   try {
+    if (!req.body.title) {
+      req.flash('titleError', '방 제목을 입력해주세요.');
+      res.render('room', {
+        error: req.flash('titleError')
+      });
+      return;
+    }
+
     const user = await User.findOne({
       user: req.session.color,
     });
@@ -129,22 +147,68 @@ router.get('/room/:id', async (req, res, next) => {
     const room = await Room.findOne({
       _id: req.params.id
     });
-  
+
     const io = req.app.get('io');
     if (!room) {
       req.flash('roomError', '존재하지 않는 방입니다.');
-      return res.redirect('/');
+      let getRooms = [];
+      const rooms = await Room.find({});
+      for (getroom of rooms) {
+        getRooms.push(getroom);
+        const users = await User.find({
+          room: getroom._id
+        }).sort('createdAt');
+        getRooms.push(users);
+        getRooms.push(users.length);
+      };
+
+      res.render('main', {
+        rooms: getRooms,
+        title: 'GIF 채팅방',
+        error: req.flash('roomError'),
+      });
+      return;
     }
     if (room.password && room.password !== req.query.password) {
-      req.flash('roomError', '비밀번호가 틀렸습니다.');
-      return res.redirect('/');
+      req.flash('passwordError', '비밀번호가 틀렸습니다.');
+      let getRooms = [];
+      const rooms = await Room.find({});
+      for (getroom of rooms) {
+        getRooms.push(getroom);
+        const users = await User.find({
+          room: getroom._id
+        }).sort('createdAt');
+        getRooms.push(users);
+        getRooms.push(users.length);
+      };
+
+      res.render('main', {
+        rooms: getRooms,
+        title: 'GIF 채팅방',
+        error: req.flash('passwordError'),
+      });
+      return;
     }
-    const {
-      rooms
-    } = io.of('/chat').adapter;
+    const { rooms } = io.of('/chat').adapter;
     if (rooms && rooms[req.params.id] && room.max <= rooms[req.params.id].length) {
-      req.flash('roomError', '허용 인원이 초과하였습니다.');
-      return res.redirect('/');
+      req.flash('exceedError', '허용 인원이 초과하였습니다.');
+      let getRooms = [];
+      const rooms = await Room.find({});
+      for (getroom of rooms) {
+        getRooms.push(getroom);
+        const users = await User.find({
+          room: getroom._id
+        }).sort('createdAt');
+        getRooms.push(users);
+        getRooms.push(users.length);
+      };
+
+      res.render('main', {
+        rooms: getRooms,
+        title: 'GIF 채팅방',
+        error: req.flash('exceedError'),
+      });
+      return;
     }
 
     const chats = await Chat.find({
@@ -170,21 +234,21 @@ router.get('/room/:id', async (req, res, next) => {
     for (originchat of chats) {
 
       var needchat = originchat.chat.split('=');
-      var needindex = needchat.findIndex(function(e){
-      return e== user.lang;
+      var needindex = needchat.findIndex(function (e) {
+        return e == user.lang;
       });
 
-      if(needindex == -1) {
-      needindex++;
-      const translate = new Translate({
-        projectId,
-        keyFilename,
-      });
-      let [translations] = await translate.translate(needchat[needindex+1],user.lang);
-      translations = Array.isArray(translations) ? translations : [translations];
-      getChat = translations;
-      } else{
-        getChat = needchat[needindex+1];
+      if (needindex == -1) {
+        needindex++;
+        const translate = new Translate({
+          projectId,
+          keyFilename,
+        });
+        let [translations] = await translate.translate(needchat[needindex + 1], user.lang);
+        translations = Array.isArray(translations) ? translations : [translations];
+        getChat = translations;
+      } else {
+        getChat = needchat[needindex + 1];
       };
 
       const chat = ({
@@ -197,11 +261,11 @@ router.get('/room/:id', async (req, res, next) => {
 
       getDb.push(chat);
     };
-    if(rooms && rooms[req.params.id] && rooms[req.params.id].length){
+    if (rooms && rooms[req.params.id] && rooms[req.params.id].length) {
       io.of('/room').emit('joinRoom', {
         roomId: req.params.id,
         user: user,
-        count:  rooms[req.params.id].length+1,
+        count: rooms[req.params.id].length + 1,
       });
     };
     return res.render('chat', {
@@ -220,7 +284,7 @@ router.get('/room/:id', async (req, res, next) => {
   }
 });
 
-router.get('/download/:id', async (req, res, next) =>{
+router.get('/download/:id', async (req, res, next) => {
 
   const user = await User.findOne({
     user: req.session.color,
@@ -234,30 +298,30 @@ router.get('/download/:id', async (req, res, next) =>{
   for (originchat of chats) {
 
     var needchat = originchat.chat.split('=');
-    var needindex = needchat.findIndex(function(e){
-    return e== user.lang;
+    var needindex = needchat.findIndex(function (e) {
+      return e == user.lang;
     });
 
-    if(needindex == -1) {
-    needindex++;
-    const translate = new Translate({
-      projectId,
-      keyFilename,
-    });
-    let [translations] = await translate.translate(needchat[needindex+1],user.lang);
-    translations = Array.isArray(translations) ? translations : [translations];
-    getChat = translations;
-    } else{
-      getChat = needchat[needindex+1];
+    if (needindex == -1) {
+      needindex++;
+      const translate = new Translate({
+        projectId,
+        keyFilename,
+      });
+      let [translations] = await translate.translate(needchat[needindex + 1], user.lang);
+      translations = Array.isArray(translations) ? translations : [translations];
+      getChat = translations;
+    } else {
+      getChat = needchat[needindex + 1];
     };
 
     getDb += originchat.id + ': ' + getChat + '\n' + '\n';
   };
-  try{
+  try {
     res.setHeader('Content-type', 'text/plain');
     res.setHeader('Content-disposition', 'attachment; filename=record.txt');
     res.send(getDb);
-  }catch (error){
+  } catch (error) {
     console.error(error);
     next(error);
   };
@@ -278,7 +342,7 @@ router.delete('/room/:id', async (req, res, next) => {
     await Room.deleteOne({
       _id: req.params.id
     });
-  
+
 
     res.send('ok');
     setTimeout(() => {
@@ -316,9 +380,12 @@ let translations = async function processtrans(allLangs, text) {
 };
 
 
-router.post('/room/chat', async (req, res, next) =>{
+router.post('/room/chat', async (req, res, next) => {
   const restore = req.body.reviews.split(':');
-  const review = new Review({id: restore[0],comments: restore[1]});
+  const review = new Review({
+    id: restore[0],
+    comments: restore[1]
+  });
   await review.save();
   res.send('ok');
 });

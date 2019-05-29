@@ -10,7 +10,7 @@
 /* BASIC */
 
 body {
-  background: rgba(0,0,0,0.85); 
+  background: rgba(0,0,0,0.85);
   background-size: cover;
   z-index: -1;
   background-size: cover;
@@ -29,7 +29,7 @@ h1.title {
   margin-top: 20px;
   margin-bottom: 0px;
   margin-left: 0px;
-  color: white; 
+  color: white;
 }
 h2.active {
   text-align: center;
@@ -39,7 +39,7 @@ h2.active {
   text-transform: uppercase;
   display:inline-block;
   margin-top:40px;
-  margin-left:-10px;
+  /* margin-left:-10px; */
   color: #cccccc;
   font-family: 'Poppins', sans-serif;
   color: white;
@@ -81,9 +81,9 @@ h6{
 /* review 아이디 */
 review{
   font-size: 16px;
-  font-weight: 1000; 
+  font-weight: 1000;
   font-family: 'Poppins', sans-serif;
-  
+
 }
 /* review comments */
 review_comments{
@@ -137,6 +137,7 @@ section{
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
   width: 100%;
   min-height: 100%;
   padding: 20px;
@@ -160,6 +161,45 @@ section{
   font-weight:600;
   vertical-align:middle;
   cursor:pointer;
+}
+
+
+/* 버튼 */
+
+
+.wrap {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  vertical-align: center;
+  display: flex;
+}
+
+.button1 {
+  width: 140px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  /* background-color: #FFF; */
+  background-color: rgba( 255, 255, 255, 0.3 );
+  border: none;
+  border-radius: 45px;
+  /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  }
+
+.button1:hover {
+  background-color: #FFF;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.4);
+  color: #000;
+  transform: translateY(-7px);
 }
 
 /* How to login 디자인 */
@@ -186,6 +226,9 @@ section{
   -ms-transform: scale(0, 0);
   transform: scale(0, 0);
 }
+
+.error-message { color: red; font-weight: bold; }
+
 
 /* how to login 디자인 */
 .box_modal2 {
@@ -325,7 +368,7 @@ section{
   margin-top:-350px;
   margin-left:-350px;
   overflow:scroll;
-  background-color: #d9e5e9; 
+  background-color: #d9e5e9;
   border:1px solid #386980;
   border-radius: 10px 10px 10px 10px;
   /* 아래 부분은 애니메이션 효과를 위한 부분 */
@@ -438,20 +481,20 @@ input#modal7[type=checkbox]:checked ~ .box_modal7 {
 
 /* FORM TYPOGRAPHY*/
 button[type=submit]{
-  background-color: #ece6c4;
+  background-color: rgba( 255, 255, 255, 0.3 );
   border: none;
-  color: white;
-  padding: 15px 80px;
+  color: black;
+  /* padding: 15px 80px; */
   text-align: center;
   text-decoration: none;
   display: inline-block;
   text-transform: uppercase;
   font-size: 13px;
-  -webkit-box-shadow: 0 10px 30px 0 rgba(217,229,233,0.2);
-  box-shadow: 0 10px 30px 0 rgba(217,229,233,0.2);
+  /* -webkit-box-shadow: 0 10px 30px 0 rgba(217,229,233,0.2); */
+  /* box-shadow: 0 10px 30px 0 rgba(217,229,233,0.2); */
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
-  margin: 5px 20px 20px 20px;
+  /* margin: 5px 20px 20px 20px; */
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
@@ -494,7 +537,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
 }
 
 input[type=text] {
-  background-color: #f6f6f6;
+  background-color: rgba( 255, 255, 255, 0.3 );
   border: none;
   color: #0d0d0d;
   padding: 15px 32px;
@@ -504,7 +547,7 @@ input[type=text] {
   font-size: 16px;
   margin: 5px;
   width: 85%;
-  border: 2px solid #f6f6f6;
+  /* border: 2px solid #f6f6f6; */
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
   -ms-transition: all 0.5s ease-in-out;
@@ -514,7 +557,7 @@ input[type=text] {
   border-radius: 5px 5px 5px 5px;
 }
 select[name=lang]{
-  background-color: #f6f6f6;
+  background-color: rgba( 255, 255, 255, 0.3 );
   color: #0d0d0d;
   padding: 15px 32px;
   text-align: center;
@@ -523,7 +566,7 @@ select[name=lang]{
   font-size: 16px;
   margin: 5px;
   width: 85%;
-  border: 2px solid #f6f6f6;
+  border: transparent;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
   -ms-transition: all 0.5s ease-in-out;
@@ -555,7 +598,7 @@ select[name=list]{
 
 input[type=text]:focus {
   background-color: #fff;
-  border-bottom: 2px solid #5fbae9;
+  /* border-bottom: 2px solid #5fbae9; */
 }
 
 input[type=text]:placeholder {
@@ -663,7 +706,7 @@ input[type=text]:placeholder {
 }
 .leftlayout{
   border: 0px;
-  border-top-left-radius: 20px; 
+  border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
 }
 .rightlayout

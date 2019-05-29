@@ -47,7 +47,8 @@ block content
         br
         a(href='/room')
           button Make Room!
-.error-message= error
+      if error
+        .error-message= error
 script(src='/socket.io/socket.io.js')
 script.
   var socket = io.connect('https://35.203.179.143:443/room', {

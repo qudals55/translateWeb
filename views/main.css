@@ -44,6 +44,9 @@ ul, li {
 }
 
 
+.error-message { color: red; font-weight: bold; }
+
+
 /* ------------------------------------ */
 input {
   display: block;

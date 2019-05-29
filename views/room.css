@@ -46,6 +46,10 @@ h5 {
   padding: 20px;
 }
 
+
+.error-message { color: red; font-weight: bold; }
+
+
 #formContent {
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;

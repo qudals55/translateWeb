@@ -59,9 +59,11 @@ html
 
 
               br
-              button#LoginButton(type='submit' style="font-weight:bold;") login
-              if loginError
-                  .error-message= loginError
+              div(class="wrap")
+                form#record-form(action='/download' method='get')  
+                  button#LoginButton(type='submit' class="button1") login
+              if error
+                  .error-message= error
         aside
           .wrapper2.fadeInDown
             h3.notice NOTICE

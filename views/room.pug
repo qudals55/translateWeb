@@ -17,6 +17,7 @@ html
               input#Max(name='max' type='number' placeholder='Min 2' min='2' max='10' value='10' size='3')       
           br 
           div(class="wrap")
-            form#record-form(action='/download' method='get')  
               button(type='submit' class="button1") Make Room
+          if error
+            .error-message= error
   body
