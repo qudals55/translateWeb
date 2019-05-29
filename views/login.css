@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display|Poppins&display=swap');
+  /* font-family: 'Playfair Display', serif; */
+  /* font-family: 'Poppins', sans-serif; */
 @import url('https://fonts.googleapis.com/css?family=Lato:100');
+  /* font-family: 'Lato', sans-serif; */
 @import url('https://fonts.googleapis.com/css?family=Courgette&display=swap');
+  /* font-family: 'Courgette', cursive; */
 @import url('https://fonts.googleapis.com/css?family=Cute+Font&display=swap');
-/* font-family: 'Cute Font', cursive; */
+  /* font-family: 'Cute Font', cursive; */
 /* BASIC */
 
 body {
   background: rgba(0,0,0,0.85); 
   background-size: cover;
-  /* z-index를 -2로 줌으로써 영상 뒤로 어두운 투과되는 배경을 넣어줌 */
   z-index: -1;
-  /* font-family: 'Poppins', sans-serif; */
   background-size: cover;
   max-height: 100%;
   max-width: 100%;
@@ -20,14 +22,7 @@ body {
   margin-right:0px;
   overflow:hidden;
 }
-a {
-  font-family: 'Playfair Display', serif;
-  color: white;
-  display:inline-block;
-  text-decoration: none;
-  font-weight: 400;
-}
-h1 {
+h1.title {
   text-align: center;
   font-weight: 900;
   font-size:64px;
@@ -66,9 +61,6 @@ h4{
   text-align:left;
   font-size:20px;
   color:white;
-}
-h4.language{
-  font-size: 10px;
 }
 h5.title{
   font-size: 32px;
@@ -297,16 +289,42 @@ section{
   transform: scale(0, 0);
 }
 
+/* how to record 디자인 */
+.box_modal7 {
+  position:fixed;
+  display:block;
+  width:558px;
+  height:245px;
+  top:50%;
+  left:50%;
+  margin-top:-200px;
+  margin-left:-230px;
+  background-image:url('/loginPart/review.png');
+  background-repeat: no-repeat;
+  border:1px solid #386980;
+  border-radius: 10px 10px 10px 10px;
+  /* 아래 부분은 애니메이션 효과를 위한 부분 */
+  visibility: collapse;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  transform: scale(0, 0);
+}
+.comment{}
 /* advantage 디자인 */
 .box_modal3 {
   position:fixed;
   display:block;
-  width:500px;
-  height:300px;
+  width:800px;
+  height:700px;
   top:50%;
   left:50%;
-  margin-top:-200px;
-  margin-left:-250px;
+  margin-top:-350px;
+  margin-left:-350px;
+  overflow:scroll;
   background-color: #d9e5e9; 
   border:1px solid #386980;
   border-radius: 10px 10px 10px 10px;
@@ -379,6 +397,12 @@ input#modal5[type=checkbox]:checked ~ .box_modal5 {
   transform: scale(1, 1);
 }
 input#modal6[type=checkbox]:checked ~ .box_modal6 {
+  visibility: visible;
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+input#modal7[type=checkbox]:checked ~ .box_modal7 {
   visibility: visible;
   -webkit-transform: scale(1, 1);
   -ms-transform: scale(1, 1);

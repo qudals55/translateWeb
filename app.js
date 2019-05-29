@@ -48,7 +48,7 @@ const sessionMiddleware = session({
     port: process.env.REDIS_PORT,
     pass: process.env.REDIS_PASSWORD,
     logErrors: true,
-    ttl: 3600,
+    ttl: 60,
    }),
 });
 

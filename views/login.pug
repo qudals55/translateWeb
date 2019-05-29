@@ -9,7 +9,7 @@ html
         source(src="/loginPart/Videochat.mp4" type="video/mp4")
       .wrapper.fadeInDown
         div
-          h1 L &nbsp&nbsp&nbsp T &nbsp&nbsp&nbsp E
+          h1.title L &nbsp&nbsp&nbsp T &nbsp&nbsp&nbsp E
           h5.title language translate easily
       div
         section#Wrapper(style='margin-left: auto; margin-right: auto;')
@@ -75,7 +75,7 @@ html
                       input(type="checkbox" id="modal1" class="hidden")
                       div(class="box_modal1" style="opacity:1")
                         label(for="modal1" class="closer") x
-                        div(class="text" style=" font-size:20px; font-weight:1000; text-align:center;") input 'Ctrl + F5' and select your language!!
+                        div(class="text" style=" font-size:20px; font-weight:1000; text-align:center;") input 'Ctrl + F' and select your language!!
                           table(style="margin-top: 20px;")
                             tr
                               td 한국어
@@ -148,16 +148,22 @@ html
                       div(class="box_modal4" style="opacity:1")
                         label(for="modal4" class="closer") x
                         div(class="text")
+                    li
+                      label(for="modal7" class="button") How to record
+                      input(type="checkbox" id="modal7" class="hidden")
+                      div(class="box_modal7" style="opacity:1")
+                        label(for="modal7" class="closer") x
+                        div(class="text")
                 li
                   h4(style="margin-bottom:5px;") Review
                   ul
                     li 
                       label(for="modal3" class="button") Show Review
-                      input(type="checkbox" id="modal3" class="hidden")
-                      div(class="box_modal3" style="overflow: scroll; opacity:1; background-color: #E2E2E2")
-                        label(for="modal3" class="closer") x
-                        div(id = 'comment' style=' margin-top:10px; margin-bottom:10px; text-align:center; font-size:20px;  font-weight:900;') Review
-                          table
+                        input(type="checkbox" id="modal3" class="hidden")
+                        div(class="box_modal3" id="box_modal3" style=" opacity:1; background-color: #E2E2E2")
+                          label(for="modal3" class="closer") x
+                          div(id = 'comment' style=' margin-top:10px; margin-bottom:10px; text-align:center; font-size:20px;  font-weight:900;') Review
+                            table
                               th(style='font-size: 18px; font-weight:1000; color:gray;') ID
                               th 
                               th(style='font-size: 18px; font-weight:1000; color:gray;') Comment
@@ -166,5 +172,5 @@ html
                                   td
                                     review= review.id
                                   td &nbsp&nbsp&nbsp
-                                  td(id= 'help' style='font-size=14px;')
+                                  td(style='font-size=14px;')
                                     review_comments= review.comments

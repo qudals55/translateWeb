@@ -73,14 +73,6 @@ block content
                   div= chat.chat
               .blank
               .clear
-                //-
-                  div(class="profile_image" style ="background: url(./profile_image.png) no-repeat;" )
-                  div(class="box")
-                    div(class= "profile_name") name
-                    div(class ="a")
-                    div(class="b") msg
-                    div(class="time") time
-                  div(class="clear")
       div( class="iplayout")
           form#chat-form(class="size" action='/chat' method='post' enctype='multipart/form-data')
             input#chat(name='chat' class="leftlayout" placeholder="Type your Message" style="height:7vh; width:82%;  text-indent:5%;")
@@ -96,8 +88,9 @@ block content
      var socket = io.connect('https://35.203.179.143:443/chat', {
      transports: [ 'websocket']
     });
+    var doubleSubmitFlag = false;
     var user_lang = #{ findlang };
-    var getReviews = ['리뷰 쓰기', 'write a review'];
+    var getReviews = ['리뷰 쓰기', 'write a review', 'Write a review'];
     //안양 모듈 실행 setlanguage로 사용자 언어로 변환
       annyang.setLanguage(user_lang.lang);
       annyang.start({ autoRestart: true, continuous: false });
@@ -240,13 +233,17 @@ block content
       
       document.querySelector('#chat-list').scrollTop = document.querySelector('#chat-list').scrollHeight;
     });
-    
+
+
     document.querySelector('#chat-form').addEventListener('submit', function (e) {
       e.preventDefault();
+      if(doubleSubmitFlag==e.target.chat.value) return;
+      doubleSubmitFlag = e.target.chat.value;
       if (e.target.chat.value) {
         var xhr = new XMLHttpRequest();
         xhr.onload = function () {
           if (xhr.status === 200) {
+            doubleSubmitFlag = '';
             e.target.chat.value = '';
           } else {
             console.error(xhr.responseText);
